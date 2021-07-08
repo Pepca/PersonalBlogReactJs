@@ -1,0 +1,202 @@
+@import '../../style/variables';
+
+.post {
+  background-color: $secondary_color;
+
+  border-radius: 5px;
+
+  box-shadow: 0 15px 25px rgba($black, 0.35);
+
+  &-overhead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+
+    > a,
+    button {
+      font-size: 15px;
+      color: rgba($white, 0.6);
+
+      transition: all 0.3s ease;
+
+      @media (min-width: $md2 + px) {
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+
+    &__share {
+      position: relative;
+      background-color: transparent;
+
+      padding-right: 32px;
+
+      &:after {
+        content: '';
+
+        position: absolute;
+        right: 0;
+        top: 50%;
+
+        width: 25px;
+        height: 25px;
+
+        background: url('../../images/Post/share.svg') center no-repeat;
+        background-size: cover;
+
+        transform: translate(0, -50%);
+      }
+    }
+  }
+
+  &__inner {
+    padding: 20px 30px 42px;
+  }
+
+  &-title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+
+    margin-bottom: 19px;
+  }
+
+  &-header {
+    margin-bottom: 30px;
+
+    &__title {
+      font-weight: 500;
+
+      margin-bottom: 15px;
+    }
+  }
+
+  &-text {
+    p {
+      margin: 25px 0;
+    }
+  }
+
+  &-player {
+    position: relative;
+
+    width: 100%;
+    min-height: 340px;
+    height: 500px;
+
+    background-color: $gray;
+  }
+
+  &-picture {
+    width: 100%;
+    min-height: 340px;
+
+    background-color: $gray;
+
+    img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+  }
+
+  &-extrainfo {
+    &:after,
+    &:before {
+      content: '';
+
+      display: inline-block;
+
+      width: 100%;
+      height: 1px;
+
+      background-color: $border_color;
+    }
+
+    &:before {
+      margin: 20px 0 40px;
+    }
+
+    &:after {
+      margin: 40px 0;
+    }
+
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &__item {
+      display: block;
+
+      max-width: 290px;
+
+      overflow: hidden;
+
+      margin-right: 35px;
+
+      &:nth-child(5n - 2) {
+        margin-right: 0;
+      }
+
+      &:nth-child(-n + 3) {
+        margin-bottom: 24px;
+      }
+    }
+
+    &__link {
+      display: inline-block;
+
+      white-space: nowrap;
+
+      font-size: 17px;
+
+      color: $yellow;
+
+      margin-bottom: 8px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.info-post-header {
+  &__date {
+    &:not(:last-child):after {
+      content: '';
+
+      display: inline-block;
+
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      margin: 0 15px 1px;
+
+      background-color: $elemnt_color;
+    }
+  }
+
+  &__tag {
+    font-size: 14px;
+    color: $gray;
+
+    cursor: pointer;
+
+    color: $gray;
+
+    transition: all 0.3s ease;
+
+    &:hover {
+      text-decoration: underline;
+      color: $primary_text_color;
+    }
+  }
+}
