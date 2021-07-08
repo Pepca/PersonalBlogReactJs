@@ -8,7 +8,7 @@ import { formatTime } from '../../SecFunc/funcs'
 
 // Components
 import VolumeSlider from './VolumeSlider'
-import Timeline from './TImeLine'
+import Timeline from './TimeLine'
 
 export default function Player({ className, src, poster }) {
   // State
