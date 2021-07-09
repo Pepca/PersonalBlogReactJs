@@ -1,9 +1,9 @@
-export const transformDateTime = strDate => {
+export const transformDateTime = (strDate) => {
   const dateTime = strDate.split('.').reverse().join('-')
   return dateTime
 }
 
-export const openPopup = setState => {
+export const openPopup = (setState) => {
   const scrollbarWidth = window.innerWidth - document.body.offsetWidth
 
   document.body.classList.add('lock')
@@ -14,17 +14,17 @@ export const openPopup = setState => {
 
   document.body.style.paddingRight = `${scrollbarWidth}px`
 
-  setState(true)
+  setState(() => true)
 }
 
-export const closePopup = setState => {
+export const closePopup = (setState) => {
   document.body.classList.remove('lock')
 
   document.body.style.paddingRight = '0'
 
   document.getElementById('fixed-element').style.paddingRight = '0'
 
-  setState(false)
+  setState(() => false)
 }
 
 export const slicerSting = (str, maxLength) => {
@@ -34,15 +34,13 @@ export const slicerSting = (str, maxLength) => {
 
   if (strArraySliced[strArraySliced.length - 1] === ' ') maxLength--
 
-  const result = strArray.slice(0, maxLength).join('')
-
-  return `${result}...`
+  return `${strArray.slice(0, maxLength).join('')}...`
 }
 
-const fixNumber = number => {
+const fixNumber = (number) => {
   return number < 10 ? `0${number}` : `${number}`
 }
 
-export const formatTime = seconds => {
+export const formatTime = (seconds) => {
   return `${Math.floor(seconds / 60)}:${fixNumber(Math.floor(seconds % 60))}`
 }

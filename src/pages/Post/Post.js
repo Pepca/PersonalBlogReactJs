@@ -14,14 +14,18 @@ import { getSearchValue } from '../../Redux/action'
 import { useDispatch } from 'react-redux'
 
 // SecFunc
-import { transformDateTime, openPopup, slicerSting } from '../../SecFunc/funcs'
+import {
+  transformDateTime,
+  openPopup,
+  slicerSting,
+} from '../../_helperFunctions'
 
 // Components
 import Share from '../../components/Popup/Share'
 import Player from '../../components/Player/Player'
 
 export default React.memo(function Post({ match, history }) {
-  const post = DATA_POSTS.find(el => el.id === parseInt(match.params.id))
+  const post = DATA_POSTS.find((el) => el.id === parseInt(match.params.id))
 
   const dispatch = useDispatch()
 
@@ -61,7 +65,7 @@ export default React.memo(function Post({ match, history }) {
               </time>
               <NavLink
                 to='/search'
-                onClick={e => dispatch(getSearchValue(e.target.text))}
+                onClick={(e) => dispatch(getSearchValue(e.target.text))}
                 className='info-post-header__tag'
               >
                 {post.tag.toLowerCase()}
@@ -76,11 +80,7 @@ export default React.memo(function Post({ match, history }) {
                 <img src={post.media.src} alt={post.media.alt} />
               </div>
             ) : (
-              <Player
-                className='post-player'
-                src={post.media.src}
-                poster={post.media.poster}
-              />
+              <Player className='post-player' src={post.media.src} />
             )}
             <p>{post.text}</p>
           </div>
@@ -90,7 +90,7 @@ export default React.memo(function Post({ match, history }) {
             </h3>
             <ul className='post-extrainfo__list'>
               {DATA_POSTS.slice(0, 7).map(
-                post =>
+                (post) =>
                   post.title !== '' && (
                     <li key={post.id} className='post-extrainfo__item'>
                       <NavLink

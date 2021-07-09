@@ -10,7 +10,7 @@ import bgPicture from '../../images/Sidebar/bgPicture.jpg'
 import { Link } from 'react-router-dom'
 
 // SecFuc
-import { openPopup } from '../../SecFunc/funcs'
+import { openPopup } from '../../_helperFunctions'
 
 // Components
 import SidebarHead from './SidebarHead'

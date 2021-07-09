@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { DATA_POSTS } from '../components/Posts/DATA_POSTS'
 
 // SecFunc
-import { transformDateTime } from '../SecFunc/funcs'
+import { transformDateTime } from '../_helperFunctions'
 
 // Router
 import { Link } from 'react-router-dom'
@@ -19,10 +19,10 @@ import { Link } from 'react-router-dom'
 export default function Search() {
   const dispatch = useDispatch()
 
-  const reduxState = useSelector(state => {
+  const reduxState = useSelector((state) => {
     return {
       searchValue: state.search.searchValue,
-      isFound: state.search.isFound
+      isFound: state.search.isFound,
     }
   })
 
@@ -35,7 +35,7 @@ export default function Search() {
         )}
         {DATA_POSTS.length > 0 &&
           DATA_POSTS.map(
-            post =>
+            (post) =>
               post.title !== '' &&
               post.tag !== '' &&
               (post.title
@@ -70,7 +70,7 @@ export default function Search() {
                         {post.tag !== '' && (
                           <Link
                             to='/search'
-                            onClick={e =>
+                            onClick={(e) =>
                               dispatch(getSearchValue(e.target.text))
                             }
                             className='info-control-post__tag'

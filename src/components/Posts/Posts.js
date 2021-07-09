@@ -7,7 +7,7 @@ import './_posts.scss'
 import { DATA_POSTS } from './DATA_POSTS'
 
 // SecFunc
-import { transformDateTime } from '../../SecFunc/funcs'
+import { transformDateTime } from '../../_helperFunctions'
 
 // Router
 import { NavLink } from 'react-router-dom'
@@ -24,7 +24,7 @@ export default function Posts() {
       {DATA_POSTS.length > 0 && (
         <div className='posts'>
           <div className='posts__inner'>
-            {DATA_POSTS.map(post => (
+            {DATA_POSTS.map((post) => (
               <div key={post.id} className='post'>
                 {post.media.src !== '' && (
                   <NavLink to={`/post${post.id}`}>
@@ -66,7 +66,9 @@ export default function Posts() {
                       {post.tag !== '' && (
                         <NavLink
                           to='/search'
-                          onClick={e => dispatch(getSearchValue(e.target.text))}
+                          onClick={(e) =>
+                            dispatch(getSearchValue(e.target.text))
+                          }
                           className='info-control-post__tag'
                         >
                           {post.tag.toLowerCase()}

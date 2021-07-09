@@ -7,7 +7,7 @@ import './_stories.scss'
 import { STORIES_DATA } from './SOTRIES_DATA'
 
 // SecFunc
-import { transformDateTime } from '../../SecFunc/funcs'
+import { transformDateTime } from '../../_helperFunctions'
 
 export default function Stories() {
   return (
@@ -15,7 +15,7 @@ export default function Stories() {
       {STORIES_DATA.length > 0 && (
         <div className='stories'>
           <ul className='stories__list'>
-            {STORIES_DATA.map(story => (
+            {STORIES_DATA.map((story) => (
               <li key={story.id} className='stories__item item-stories'>
                 <h1 className='item-stories__title'>{story.title}</h1>
                 <div className='item-stories__img'>

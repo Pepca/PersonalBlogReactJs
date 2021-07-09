@@ -109,10 +109,12 @@ export default function VolumeSlider({ video }) {
     return pixels
   }
   const onSliderMouseEvents = event => {
-    const handler = event.currentTarget.children[0]
-    handler.style.left = `${calcPositionX(event)}px`
+    refHandler.current.style.left = `${calcPositionX(event)}px`
     setVolumeVideo(event)
-    setLocalStorage(_volume_value, calcPositionX(event))
+    setLocalStorage(
+      _volume_value,
+      calcPositionX(event) / widthVolumeSlider.current
+    )
   }
 
   const setVolumeVideo = useCallback(
@@ -122,13 +124,13 @@ export default function VolumeSlider({ video }) {
       } else {
         video.current.volume = checkLocalStorage(
           _volume_value,
-          getLocalStorage(_volume_value) / widthVolumeSlider.current,
+          getLocalStorage(_volume_value),
           1
         )
 
         refHandler.current.style.left = `${
-          video.current.volume * widthVolumeSlider.current
-        }px`
+          video.current.volume * 100 <= 80 ? video.current.volume * 100 : 80
+        }%`
       }
     },
     [video, checkLocalStorage]
@@ -138,13 +140,13 @@ export default function VolumeSlider({ video }) {
 
   // Calc Width Volume Slider
   useEffect(() => {
-    const volumeSlider = refVolumeSlider.current
-    const handler = refHandler.current
+    const volumeSlider = document.querySelector('.volume-slider')
+    const handler = document.querySelector('.volume-slider-handler')
 
     const result = volumeSlider.offsetWidth - handler.offsetWidth
 
     widthVolumeSlider.current = result
-  }, [refVolumeSlider, refHandler, widthVolumeSlider])
+  }, [refVolumeSlider, refHandler])
   // /Calc Width Volume Slider
 
   useEffect(() => {

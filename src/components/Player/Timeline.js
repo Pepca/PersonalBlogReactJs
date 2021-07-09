@@ -1,14 +1,14 @@
 import React, { useState, useRef } from 'react'
 
 // SecFunc
-import { formatTime } from '../../SecFunc/funcs'
+import { formatTime } from '../../_helperFunctions'
 
 export default React.memo(function Timeline({
   video,
   videoDuration,
   setVideoCurrentTime,
   videoPlay,
-  videoPause
+  videoPause,
 }) {
   // State
   const [isDragging, setIsDragging] = useState(false)
@@ -20,7 +20,7 @@ export default React.memo(function Timeline({
   const refCurrentLine = useRef(null)
 
   // Func
-  const calcPositionX = event => {
+  const calcPositionX = (event) => {
     const { left } = refTimeline.current.getBoundingClientRect()
 
     let pixels = event.clientX - left
@@ -34,7 +34,7 @@ export default React.memo(function Timeline({
 
     return {
       getPixels: () => pixels,
-      getPercents: () => percensts
+      getPercents: () => percensts,
     }
   }
 
@@ -48,7 +48,7 @@ export default React.memo(function Timeline({
     )
   }
 
-  const setCurrentTime = event => {
+  const setCurrentTime = (event) => {
     video.current.currentTime = Math.ceil(
       videoDuration * calcPositionX(event).getPercents()
     )
@@ -56,7 +56,7 @@ export default React.memo(function Timeline({
     setVideoCurrentTime(() => video.current.currentTime)
   }
 
-  const cancelDragging = event => {
+  const cancelDragging = (event) => {
     if (isDragging) {
       setCurrentTime(event)
       setIsDragging(() => false)
@@ -64,14 +64,14 @@ export default React.memo(function Timeline({
     }
   }
 
-  const mouseMoveInstant = event => {
+  const mouseMoveInstant = (event) => {
     refHint.current.style.left = `${positionX(event)}px`
     refHint.current.textContent = formatTime(
       Math.ceil(videoDuration * calcPositionX(event).getPercents())
     )
   }
 
-  const mouseMoveDragging = event => {
+  const mouseMoveDragging = (event) => {
     if (isDragging) {
       refHandler.current.style.left = `${positionX(event, 'devided')}px`
       refCurrentLine.current.style.width = `${positionX(event, 'devided')}px`
@@ -83,17 +83,17 @@ export default React.memo(function Timeline({
     <div
       className='timeline-player'
       ref={refTimeline}
-      onMouseDown={event => {
+      onMouseDown={(event) => {
         videoPause()
         setIsDragging(() => true)
         setCurrentTime(event)
       }}
-      onMouseMove={event => {
+      onMouseMove={(event) => {
         mouseMoveInstant(event)
         mouseMoveDragging(event)
       }}
-      onMouseUp={event => cancelDragging(event)}
-      onMouseLeave={event => cancelDragging(event)}
+      onMouseUp={(event) => cancelDragging(event)}
+      onMouseLeave={(event) => cancelDragging(event)}
     >
       <div className='timeline-player__handler' ref={refHandler} />
       <div className='timeline-player__hint' ref={refHint} />
