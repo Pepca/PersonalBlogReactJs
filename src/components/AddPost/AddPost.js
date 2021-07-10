@@ -8,27 +8,31 @@ import Camera from '../../images/AddPost/camera.svg'
 import Send from '../../images/AddPost/send.svg'
 
 export default function AddPost() {
+  // Refs
   const textarea = React.useRef(null)
 
+  // State
   const [textareaInitH] = React.useState(95)
   const [isFocus, setIsFocus] = React.useState(false)
 
-  const handleSubmit = event => {
+  // Functions
+  const handleSubmit = (event) => {
     event.preventDefault()
   }
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     event.target.style.height = `${textareaInitH}px`
     event.target.style.height = `${event.target.scrollHeight}px`
   }
 
+  // Render
   return (
     <form
       action='/'
       className='addpost-form'
       method='post'
       encType='multipart/form-data'
-      onSubmit={event => handleSubmit(event)}
+      onSubmit={(event) => handleSubmit(event)}
     >
       <div
         className='addpost-form__textarea'
@@ -40,10 +44,10 @@ export default function AddPost() {
           placeholder='Напишите что-нибудь'
           ref={textarea}
           onFocus={() => setIsFocus(true)}
-          onBlur={event => {
+          onBlur={(event) => {
             event.target.scrollHeight === textareaInitH && setIsFocus(false)
           }}
-          onChange={event => handleChange(event)}
+          onChange={(event) => handleChange(event)}
         />
       </div>
       <input

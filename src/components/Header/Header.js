@@ -11,6 +11,7 @@ import Nav from './Nav'
 import FormSearch from './FormSearch'
 
 export default function Header() {
+  // Render
   return (
     <header className='header' id='fixed-element'>
       <div className='header__inner'>

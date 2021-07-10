@@ -1,32 +1,29 @@
 import React from 'react'
 
-// Redux
-import { getSearchValue, setIsFound } from '../../Redux/action'
-import { useDispatch, useSelector } from 'react-redux'
-
 // DATA
 import { DATA_POSTS } from '../Posts/DATA_POSTS'
 
 // Router
 import { withRouter, Link } from 'react-router-dom'
 
+// Context
+import { SearchContext } from '../../Context/ContextProvider'
+
 export default React.memo(
   withRouter(function FormSearch({ history }) {
+    // Refs
     const search = React.useRef(null)
 
+    // State
     const [isFocused, setIsFocused] = React.useState(false)
 
-    const dispatch = useDispatch()
-    const reduxState = useSelector(state => {
-      return {
-        searchValue: state.search.searchValue,
-        isFound: state.search.isFound
-      }
-    })
+    // State Context
+    const { searchState, setSearchState } = React.useContext(SearchContext)
 
-    const handleChange = event => {
+    // Functions
+    const handleChange = (event) => {
       const result = DATA_POSTS.findIndex(
-        el =>
+        (el) =>
           el.title !== '' &&
           (el.title
             .toUpperCase()
@@ -36,18 +33,21 @@ export default React.memo(
               .search(event.target.value.toUpperCase().trim()) !== -1)
       )
 
-      result !== -1 ? dispatch(setIsFound(true)) : dispatch(setIsFound(false))
+      result !== -1
+        ? setSearchState((searchState.isFound = true))
+        : setSearchState((searchState.isFound = false))
 
-      dispatch(getSearchValue(event.target.value))
+      setSearchState({ ...searchState, searchValue: event.target.value })
 
       event.target.value !== '' ? setIsFocused(true) : setIsFocused(false)
     }
 
+    // Render
     return (
       <form
         action='/'
         className='header__form from-header'
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault()
           history.push('/search')
           search.current.blur()
@@ -59,8 +59,8 @@ export default React.memo(
           type='text'
           className='from-header__search'
           placeholder='Поиск по блогу'
-          onChange={event => handleChange(event)}
-          onFocus={event => event.target.value !== '' && setIsFocused(true)}
+          onChange={(event) => handleChange(event)}
+          onFocus={(event) => event.target.value !== '' && setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         />
         {history.location.pathname !== '/search' && DATA_POSTS.length > 0 && (
@@ -70,21 +70,21 @@ export default React.memo(
             }`}
           >
             <ul className='submenu-form-header__list'>
-              {!reduxState.isFound && (
+              {!searchState.isFound && (
                 <li className='submenu-form-header__item error'>
                   Ничего не найдено...
                 </li>
               )}
               {DATA_POSTS.map(
-                post =>
-                  reduxState.searchValue.trim().toUpperCase() !== '' &&
+                (post) =>
+                  searchState.searchValue.trim().toUpperCase() !== '' &&
                   (post.title
                     .toUpperCase()
-                    .search(reduxState.searchValue.trim().toUpperCase()) !==
+                    .search(searchState.searchValue.trim().toUpperCase()) !==
                     -1 ||
                     post.tag
                       .toUpperCase()
-                      .search(reduxState.searchValue.trim().toUpperCase()) !==
+                      .search(searchState.searchValue.trim().toUpperCase()) !==
                       -1) &&
                   post.title && (
                     <li key={post.id} className='submenu-form-header__item'>

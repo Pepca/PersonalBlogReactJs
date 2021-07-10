@@ -9,11 +9,7 @@ import { NavLink } from 'react-router-dom'
 // DATA
 import { DATA_POSTS } from '../../components/Posts/DATA_POSTS'
 
-// Redux
-import { getSearchValue } from '../../Redux/action'
-import { useDispatch } from 'react-redux'
-
-// SecFunc
+// Helper Functions
 import {
   transformDateTime,
   openPopup,
@@ -24,13 +20,20 @@ import {
 import Share from '../../components/Popup/Share'
 import Player from '../../components/Player/Player'
 
+// Context
+import { SearchContext } from '../../Context/ContextProvider'
+
 export default React.memo(function Post({ match, history }) {
-  const post = DATA_POSTS.find((el) => el.id === parseInt(match.params.id))
-
-  const dispatch = useDispatch()
-
+  // State
   const [isOpen, setIsOpen] = React.useState(false)
 
+  // State Context
+  const { searchState, setSearchState } = React.useContext(SearchContext)
+
+  // Functions
+  const post = DATA_POSTS.find((el) => el.id === parseInt(match.params.id))
+
+  // Render
   return (
     <>
       <Share isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -65,7 +68,9 @@ export default React.memo(function Post({ match, history }) {
               </time>
               <NavLink
                 to='/search'
-                onClick={(e) => dispatch(getSearchValue(e.target.text))}
+                onClick={(e) =>
+                  setSearchState({ ...searchState, searchValue: e.target.text })
+                }
                 className='info-post-header__tag'
               >
                 {post.tag.toLowerCase()}

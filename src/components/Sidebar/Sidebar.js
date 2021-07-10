@@ -9,7 +9,7 @@ import bgPicture from '../../images/Sidebar/bgPicture.jpg'
 // Router
 import { Link } from 'react-router-dom'
 
-// SecFuc
+// Helper Functions
 import { openPopup } from '../../_helperFunctions'
 
 // Components
@@ -17,8 +17,10 @@ import SidebarHead from './SidebarHead'
 import SendMessage from '../../components/Popup/SendMessage'
 
 export default function Sidebar() {
+  // State
   const [isOpen, setIsOpen] = React.useState(false)
 
+  // Render
   return (
     <>
       <SendMessage isOpen={isOpen} setIsOpen={setIsOpen} />

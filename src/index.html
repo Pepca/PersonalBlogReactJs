@@ -5,26 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="ie=edge" />
     <link rel="shortcut icon" href="favicon.png" type="image/png" />
-    <link rel="stylesheet" href="preloader.css" />
+    <!-- <link rel="stylesheet" href="preloader.css" /> -->
     <%= htmlWebpackPlugin.tags.headTags %>
     <title>Pepe personal blog</title>
   </head>
   <body>
-    <div id="preloader" class="preloader-bg">
-      <div class="preloader">
-        <div class="lds-roller">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+    <div id="app" class="app">
+      <!-- <div id="preloader" class="preloader-bg">
+        <div class="preloader">
+          <div class="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
-      </div>
+      </div> -->
+      <!-- <aside class="sidebar">
+        <div class="sidebar__inner">
+          <div class="sidebar-picture">
+            <img src={bgPicture} alt='bgPicture' />
+          </div>
+          <SidebarHead />
+          <div class="sidebar-description">
+            <p>
+              Front-end разработчик. Практик верстки сайтов. Созданием сайтов
+              занимаюсь с 2012 года. Работал в нескольких ИТ компаниях и
+              наработал более 10 000 часов в создании сайтов различной
+              сложности.
+            </p>
+          </div>
+          <div class="sidebar__controls controls-sidebar">
+            <div class="controls-sidebar__item">
+              <Link
+                to='/works'
+                class='controls-sidebar__btn red-btn'
+                type='button'
+              >
+                Мои работы
+              </Link>
+            </div>
+            <div class="controls-sidebar__item">
+              <button class="controls-sidebar__btn blue-btn" type="button">
+                Написать мне
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside> -->
     </div>
-    <div id="app" class="app"></div>
     <%= htmlWebpackPlugin.tags.bodyTags %>
   </body>
 </html>

@@ -4,10 +4,11 @@ import React from 'react'
 import { DATA_WORKS } from './DATA_WORKS'
 
 export default function WorkItems() {
+  // Render
   return (
     <>
       {DATA_WORKS.length > 0 &&
-        DATA_WORKS.map(item => (
+        DATA_WORKS.map((item) => (
           <div key={item.id} className='works__item item-works'>
             <div className='item-works__picture'>
               <img src={item.img.src} alt={item.img.alt} />

@@ -1,6 +1,6 @@
 import React from 'react'
 
-// Lodash
+// Helper Libraries
 import { groupBy } from 'lodash'
 
 // DATA
@@ -9,17 +9,19 @@ import { DATA_POSTS } from '../Posts/DATA_POSTS'
 // Router
 import { Link } from 'react-router-dom'
 
-// Redux
-import { getSearchValue } from '../../Redux/action'
-import { useDispatch } from 'react-redux'
+// Context
+import { SearchContext } from '../../Context/ContextProvider'
 
 export default function Nav() {
-  const dispatch = useDispatch()
+  // State Context
+  const { searchState, setSearchState } = React.useContext(SearchContext)
 
+  // Functions
   const submenuTags = Object.keys(groupBy(DATA_POSTS, 'tag')).filter(
-    str => str !== ''
+    (str) => str !== ''
   )
 
+  // Render
   return (
     <nav className='header__nav nav-header'>
       <ul className='nav-header__list'>
@@ -39,11 +41,16 @@ export default function Nav() {
           {submenuTags.length > 0 && (
             <div className='item-header-nav__submenu submenu-nav-header'>
               <ul className='submenu-nav-header__list'>
-                {submenuTags.map(tag => (
+                {submenuTags.map((tag) => (
                   <li key={tag} className='submenu-nav-header__item'>
                     <Link
                       to='/search'
-                      onClick={e => dispatch(getSearchValue(e.target.text))}
+                      onClick={(e) =>
+                        setSearchState({
+                          ...searchState,
+                          searchValue: e.target.text,
+                        })
+                      }
                       className='submenu-nav-header__link'
                     >
                       {tag}

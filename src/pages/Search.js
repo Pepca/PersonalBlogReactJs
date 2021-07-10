@@ -3,34 +3,28 @@ import React from 'react'
 // Style
 import '../components/Posts/_posts.scss'
 
-// Redux
-import { getSearchValue } from '../Redux/action'
-import { useDispatch, useSelector } from 'react-redux'
-
 // DATA
 import { DATA_POSTS } from '../components/Posts/DATA_POSTS'
 
-// SecFunc
+// Helper Functions
 import { transformDateTime } from '../_helperFunctions'
 
 // Router
 import { Link } from 'react-router-dom'
 
+// Context
+import { SearchContext } from '../Context/ContextProvider'
+
 export default function Search() {
-  const dispatch = useDispatch()
+  // State Context
+  const { searchState, setSearchState } = React.useContext(SearchContext)
 
-  const reduxState = useSelector((state) => {
-    return {
-      searchValue: state.search.searchValue,
-      isFound: state.search.isFound,
-    }
-  })
-
+  // Render
   return (
     <section className='search'>
-      <h1 className='search-title title-route'>{`Результаты поиска “${reduxState.searchValue}”`}</h1>
+      <h1 className='search-title title-route'>{`Результаты поиска “${searchState.searchValue}”`}</h1>
       <div className='search__inner'>
-        {!reduxState.isFound && (
+        {!searchState.isFound && (
           <h1 style={{ fontSize: '17px' }}>Ничего не надено...</h1>
         )}
         {DATA_POSTS.length > 0 &&
@@ -40,10 +34,10 @@ export default function Search() {
               post.tag !== '' &&
               (post.title
                 .toUpperCase()
-                .search(reduxState.searchValue.trim().toUpperCase()) !== -1 ||
+                .search(searchState.searchValue.trim().toUpperCase()) !== -1 ||
                 post.tag
                   .toUpperCase()
-                  .search(reduxState.searchValue.trim().toUpperCase()) !==
+                  .search(searchState.searchValue.trim().toUpperCase()) !==
                   -1) && (
                 <div key={post.id} className='post'>
                   <div className='post__body'>
@@ -71,7 +65,10 @@ export default function Search() {
                           <Link
                             to='/search'
                             onClick={(e) =>
-                              dispatch(getSearchValue(e.target.text))
+                              setSearchState({
+                                ...searchState,
+                                searchValue: e.target.text,
+                              })
                             }
                             className='info-control-post__tag'
                           >

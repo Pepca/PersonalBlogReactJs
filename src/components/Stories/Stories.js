@@ -6,10 +6,11 @@ import './_stories.scss'
 // DATA
 import { STORIES_DATA } from './SOTRIES_DATA'
 
-// SecFunc
+// Helper Functions
 import { transformDateTime } from '../../_helperFunctions'
 
 export default function Stories() {
+  // Render
   return (
     <>
       {STORIES_DATA.length > 0 && (

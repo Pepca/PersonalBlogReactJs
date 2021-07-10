@@ -4,6 +4,7 @@ import React from 'react'
 import './_profile.scss'
 
 export default function Profile() {
+  // Render
   return (
     <section className='profile'>
       <h1 className='profile__title title-route'>Профиль</h1>

@@ -6,19 +6,20 @@ import './_posts.scss'
 // DATA
 import { DATA_POSTS } from './DATA_POSTS'
 
-// SecFunc
+// Helper Functions
 import { transformDateTime } from '../../_helperFunctions'
 
 // Router
 import { NavLink } from 'react-router-dom'
 
-// Redux
-import { getSearchValue } from '../../Redux/action'
-import { useDispatch } from 'react-redux'
+// Context
+import { SearchContext } from '../../Context/ContextProvider'
 
 export default function Posts() {
-  const dispatch = useDispatch()
+  // State Context
+  const { searchState, setSearchState } = React.useContext(SearchContext)
 
+  // Render
   return (
     <>
       {DATA_POSTS.length > 0 && (
@@ -67,7 +68,10 @@ export default function Posts() {
                         <NavLink
                           to='/search'
                           onClick={(e) =>
-                            dispatch(getSearchValue(e.target.text))
+                            setSearchState({
+                              ...searchState,
+                              searchValue: e.target.text,
+                            })
                           }
                           className='info-control-post__tag'
                         >

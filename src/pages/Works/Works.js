@@ -7,6 +7,7 @@ import './_works.scss'
 import WorkItems from './WorkItems'
 
 export default function Works() {
+  // Render
   return (
     <section className='works'>
       <div className='works__title title-route'>Мои работы</div>
