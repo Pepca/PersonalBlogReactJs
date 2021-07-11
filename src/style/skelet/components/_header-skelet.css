@@ -12,7 +12,7 @@
 
   background-color: var(--bg-color);
 
-  box-shadow: 0 5px 22px rgba(black, 0.25);
+  box-shadow: 0 5px 22px rgba(0, 0, 0, 0.25);
 }
 
 .header__inner {
@@ -20,7 +20,7 @@
   justify-content: space-between;
 }
 
-.skelet-header .header__inner {
+._skelet-app .header__inner {
   height: 100%;
 }
 
@@ -30,7 +30,7 @@
   flex: 0 1 23%;
 }
 
-.skelet-header .nav-header {
+._skelet-app .nav-header {
   height: 100%;
 }
 
@@ -39,11 +39,11 @@
   align-items: center;
 }
 
-.skelet-header .nav-header__list {
+._skelet-app .nav-header__list {
   height: 100%;
 }
 
-.skelet-header .nav-header__item {
+._skelet-app .nav-header__item {
   width: 80px;
   height: 22.5px;
   background-color: var(--gray-placeholder-2);
@@ -53,7 +53,7 @@
   margin: 0 15px;
 }
 
-.skelet-header .form-header {
+._skelet-app .form-header {
   width: 254px;
   height: 100%;
 

@@ -10,7 +10,7 @@
 
   background-color: var(--secondary-color);
 
-  box-shadow: 5px 0 15px rgba(var(--bxs-color), 0.1);
+  box-shadow: 5px 0 15px rgba(5, 5, 5, 0.1);
 }
 
 .sidebar__inner {
@@ -33,7 +33,7 @@
   padding: 0 30px;
 }
 
-.skelet-sidebar .sidebar-description p {
+._skelet-app .sidebar-description p {
   width: 340px;
   height: 120px;
 
@@ -87,7 +87,7 @@
   margin: 0 auto 19px;
 }
 
-.skelet-sidebar .info-head-sidebar {
+._skelet-app .info-head-sidebar {
   margin: 0 auto 30px;
 
   width: 240px;
@@ -111,7 +111,7 @@
   height: 35px;
 }
 
-.skelet-sidebar .contacts-head-sidebar__item {
+._skelet-app .contacts-head-sidebar__item {
   background-color: var(--gray-placeholder-2);
 
   border-radius: 50%;
@@ -127,7 +127,7 @@
   justify-content: space-between;
 }
 
-.skelet-sidebar .controls-sidebar__item {
+._skelet-app .controls-sidebar__item {
   width: 162px;
   height: 50px;
 

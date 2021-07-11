@@ -1,0 +1,19 @@
+.stories__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 20px;
+}
+
+.item-stories {
+  background-color: var(--gray-placeholder-1);
+
+  filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.2));
+}
+
+._skelet-app .item-stories {
+  width: 230px;
+  height: 320px;
+
+  border-radius: 15px;
+}

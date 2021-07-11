@@ -2,7 +2,7 @@
 // POSTS
 import Img1 from '../images/Posts/img1.jpg'
 import Img2 from '../images/Posts/img2.jpg'
-import Video1 from '../videos/Metal_Wind_Chimes_at_Sunset.mp4'
+import Video1 from '../videos/video1.mp4'
 import poster_video1 from '../images/Posts/video1.jpg'
 
 // STORIES

@@ -1,9 +1,13 @@
 @import '_reset.css';
-@import '_global-variables.css';
+@import '_variables.css';
+@import '_global.css';
 
 /* Components */
 @import 'components/_sidebar-skelet.css';
 @import 'components/_header-skelet.css';
+@import 'components/_stories-skelet.css';
+@import 'components/_addpost-skelet.css';
+@import 'components/_posts-skelet.css';
 
 /* Global */
 body {

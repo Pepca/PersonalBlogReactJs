@@ -1,23 +1,8 @@
 @import '../../style/variables';
 
-.posts {
-  margin-top: 40px;
-}
-
 .post {
-  background-color: $secondary_color;
-
-  border-radius: 5px;
-
-  box-shadow: 0 15px 25px rgba($black, 0.35);
-
-  margin-bottom: 40px;
-
   &__picture {
-    width: 100%;
     min-height: 400px;
-
-    background-color: $gray;
 
     img {
       width: 100%;
@@ -26,10 +11,6 @@
       object-fit: cover;
     }
   }
-
-  &__body {
-    padding: 25px 30px 18px;
-  }
 }
 
 .description-post {
@@ -37,7 +18,6 @@
 
   &__title {
     margin-bottom: 15px;
-
     font-weight: 500;
   }
 
@@ -47,10 +27,6 @@
 }
 
 .control-post {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
   &__link {
     position: relative;
     color: $secondary_blue;

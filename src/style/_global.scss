@@ -34,46 +34,6 @@ button {
   color: $white;
 }
 
-.app {
-  width: 100%;
-  min-height: 100%;
-  overflow: hidden;
-  display: flex;
-
-  &__inner {
-    width: 100%;
-
-    margin-left: 400px;
-  }
-
-  &-content {
-    padding-top: calc(60px + 40px);
-    padding-bottom: 80px;
-  }
-}
-
-._container {
-  max-width: $maxWidthContainer + px;
-  margin: 0 auto;
-  padding-right: 15px; // Remove padding, if layout by breakpoints
-  padding-left: 15px;
-
-  // Layout by breakpoints
-
-  // @media (max-width: $md1 + px) {
-  //   max-width: 970px;
-  // }
-
-  // @media (max-width: $md2 + px) {
-  //   max-width: 750px;
-  // }
-
-  // @media (max-width: $md3 + px) {
-  //   max-width: none;
-  //   padding: 0px 10px;
-  // }
-}
-
 .primary-title {
   font-size: 23px;
   line-height: 21px;
