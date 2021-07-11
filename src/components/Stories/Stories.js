@@ -4,7 +4,7 @@ import React from 'react'
 import './_stories.scss'
 
 // DATA
-import { STORIES_DATA } from './SOTRIES_DATA'
+import { stories_API } from '../../API/emulate_API'
 
 // Helper Functions
 import { transformDateTime } from '../../_helperFunctions'
@@ -13,10 +13,10 @@ export default function Stories() {
   // Render
   return (
     <>
-      {STORIES_DATA.length > 0 && (
+      {stories_API.length > 0 && (
         <div className='stories'>
           <ul className='stories__list'>
-            {STORIES_DATA.map((story) => (
+            {stories_API.map((story) => (
               <li key={story.id} className='stories__item item-stories'>
                 <h1 className='item-stories__title'>{story.title}</h1>
                 <div className='item-stories__img'>

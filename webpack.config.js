@@ -18,9 +18,13 @@ const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
 const EslintWebpackPlugin = require('eslint-webpack-plugin')
 
 // Variables for control the bundle
-const isDev = process.env.NODE_ENV === 'development'
 
-const mode = isDev ? 'development' : 'production'
+const _devMode = 'development'
+const _prodMode = 'production'
+
+const isDev = process.env.NODE_ENV === _devMode
+
+const mode = isDev ? _devMode : _prodMode
 const target = isDev ? 'web' : 'browserslist'
 
 // Functions for control the bundle :
@@ -32,7 +36,7 @@ const plugins = () => {
     new CopyWebpackPlugin({
       patterns: [
         { from: 'src/favicon.png', to: '' },
-        { from: 'src/preloader.css', to: '' },
+        { from: 'src/style/skelet', to: 'style' },
       ],
     }),
     new HtmlWebpackPlugin({
@@ -65,14 +69,10 @@ const plugins = () => {
 // =======================================
 // Output
 const output = () => {
-  const config = {
+  return {
     path: path.resolve(__dirname, 'dist'),
     filename: '[contenthash].bundle.js',
   }
-
-  // if (isDev) config.assetModuleFilename = 'images/[hash][ext]'
-
-  return config
 }
 // =======================================
 
@@ -132,43 +132,39 @@ module.exports = {
     rules: [
       {
         test: /\.(png|jpe?g|gif|svg|webp)$/i,
-        // type: isDev ? 'asset' : '',
-        /* isDev */
-        use:
-          /* ? [] */
-          /* : */ [
-            {
-              loader: 'file-loader',
-              options: {
-                name: '[contenthash].[ext]',
-                outputPath: './images',
+
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[contenthash].[ext]',
+              outputPath: './images',
+            },
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+                quality: 80,
+              },
+              pngquant: {
+                quality: [0.65, 0.9],
+                speed: 4,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              webp: {
+                quality: 80,
               },
             },
-            {
-              loader: 'image-webpack-loader',
-              options: {
-                mozjpeg: {
-                  progressive: true,
-                  quality: 80,
-                },
-                pngquant: {
-                  quality: [0.65, 0.9],
-                  speed: 4,
-                },
-                gifsicle: {
-                  interlaced: false,
-                },
-                webp: {
-                  quality: 80,
-                },
-              },
-            },
-          ],
+          },
+        ],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
-          // { loader: 'file-loader?name=fonts/[name].[ext]' }
           {
             loader: 'file-loader',
             options: {

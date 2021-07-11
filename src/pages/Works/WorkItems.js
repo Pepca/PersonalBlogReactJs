@@ -1,14 +1,14 @@
 import React from 'react'
 
 // DATA
-import { DATA_WORKS } from './DATA_WORKS'
+import { works_API } from '../../API/emulate_API'
 
 export default function WorkItems() {
   // Render
   return (
     <>
-      {DATA_WORKS.length > 0 &&
-        DATA_WORKS.map((item) => (
+      {works_API.length > 0 &&
+        works_API.map((item) => (
           <div key={item.id} className='works__item item-works'>
             <div className='item-works__picture'>
               <img src={item.img.src} alt={item.img.alt} />

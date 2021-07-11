@@ -4,7 +4,7 @@ import React from 'react'
 import '../components/Posts/_posts.scss'
 
 // DATA
-import { DATA_POSTS } from '../components/Posts/DATA_POSTS'
+import { posts_API } from '../API/emulate_API'
 
 // Helper Functions
 import { transformDateTime } from '../_helperFunctions'
@@ -27,8 +27,8 @@ export default function Search() {
         {!searchState.isFound && (
           <h1 style={{ fontSize: '17px' }}>Ничего не надено...</h1>
         )}
-        {DATA_POSTS.length > 0 &&
-          DATA_POSTS.map(
+        {posts_API.length > 0 &&
+          posts_API.map(
             (post) =>
               post.title !== '' &&
               post.tag !== '' &&

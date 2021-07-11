@@ -5,58 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="ie=edge" />
     <link rel="shortcut icon" href="favicon.png" type="image/png" />
-    <!-- <link rel="stylesheet" href="preloader.css" /> -->
+    <link rel="stylesheet" href="style/skelet-styles.css" />
     <%= htmlWebpackPlugin.tags.headTags %>
     <title>Pepe personal blog</title>
   </head>
   <body>
     <div id="app" class="app">
-      <!-- <div id="preloader" class="preloader-bg">
-        <div class="preloader">
-          <div class="lds-roller">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
-      </div> -->
-      <!-- <aside class="sidebar">
+      <aside class="sidebar skelet-sidebar">
         <div class="sidebar__inner">
-          <div class="sidebar-picture">
-            <img src={bgPicture} alt='bgPicture' />
+          <div class="sidebar-picture"></div>
+          <div class="head-sidebar">
+            <div class="head-sidebar__avatar"></div>
+            <div class="info-head-sidebar"></div>
+            <div class="contacts-head-sidebar">
+              <ul class="contacts-head-sidebar__list">
+                <li class="contacts-head-sidebar__item"></li>
+                <li class="contacts-head-sidebar__item"></li>
+                <li class="contacts-head-sidebar__item"></li>
+              </ul>
+            </div>
           </div>
-          <SidebarHead />
           <div class="sidebar-description">
-            <p>
-              Front-end разработчик. Практик верстки сайтов. Созданием сайтов
-              занимаюсь с 2012 года. Работал в нескольких ИТ компаниях и
-              наработал более 10 000 часов в создании сайтов различной
-              сложности.
-            </p>
+            <p></p>
           </div>
-          <div class="sidebar__controls controls-sidebar">
-            <div class="controls-sidebar__item">
-              <Link
-                to='/works'
-                class='controls-sidebar__btn red-btn'
-                type='button'
-              >
-                Мои работы
-              </Link>
-            </div>
-            <div class="controls-sidebar__item">
-              <button class="controls-sidebar__btn blue-btn" type="button">
-                Написать мне
-              </button>
-            </div>
+          <div class="controls-sidebar">
+            <div class="controls-sidebar__item"></div>
+            <div class="controls-sidebar__item"></div>
           </div>
         </div>
-      </aside> -->
+      </aside>
+      <header class="header skelet-header">
+        <div class="header__inner">
+          <div class="header__right">
+            <nav class="nav-header">
+              <ul class="nav-header__list">
+                <li class="nav-header__item"></li>
+                <li class="nav-header__item"></li>
+                <li class="nav-header__item"></li>
+                <li class="nav-header__item"></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="header__left">
+            <nav class="nav-header">
+              <ul class="nav-header__list">
+                <li class="nav-header__item"></li>
+              </ul>
+            </nav>
+            <form action="/" class="form-header"></form>
+          </div>
+        </div>
+      </header>
     </div>
     <%= htmlWebpackPlugin.tags.bodyTags %>
   </body>

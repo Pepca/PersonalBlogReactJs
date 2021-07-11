@@ -4,7 +4,7 @@ import React from 'react'
 import './_posts.scss'
 
 // DATA
-import { DATA_POSTS } from './DATA_POSTS'
+import { posts_API } from '../../API/emulate_API'
 
 // Helper Functions
 import { transformDateTime } from '../../_helperFunctions'
@@ -22,10 +22,10 @@ export default function Posts() {
   // Render
   return (
     <>
-      {DATA_POSTS.length > 0 && (
+      {posts_API.length > 0 && (
         <div className='posts'>
           <div className='posts__inner'>
-            {DATA_POSTS.map((post) => (
+            {posts_API.map((post) => (
               <div key={post.id} className='post'>
                 {post.media.src !== '' && (
                   <NavLink to={`/post${post.id}`}>

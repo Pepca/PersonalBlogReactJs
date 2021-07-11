@@ -1,0 +1,11 @@
+@import '_reset.css';
+@import '_global-variables.css';
+
+/* Components */
+@import 'components/_sidebar-skelet.css';
+@import 'components/_header-skelet.css';
+
+/* Global */
+body {
+  background-color: var(--primary_color);
+}

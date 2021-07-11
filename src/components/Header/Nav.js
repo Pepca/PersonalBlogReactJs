@@ -4,7 +4,7 @@ import React from 'react'
 import { groupBy } from 'lodash'
 
 // DATA
-import { DATA_POSTS } from '../Posts/DATA_POSTS'
+import { posts_API } from '../../API/emulate_API'
 
 // Router
 import { Link } from 'react-router-dom'
@@ -17,7 +17,7 @@ export default function Nav() {
   const { searchState, setSearchState } = React.useContext(SearchContext)
 
   // Functions
-  const submenuTags = Object.keys(groupBy(DATA_POSTS, 'tag')).filter(
+  const submenuTags = Object.keys(groupBy(posts_API, 'tag')).filter(
     (str) => str !== ''
   )
 
@@ -32,7 +32,7 @@ export default function Nav() {
         </li>
         <li
           className={`nav-header__item${
-            DATA_POSTS.length > 0 && ' item-header-nav'
+            posts_API.length > 0 && ' item-header-nav'
           }`}
         >
           <Link to='/search' className='nav-header__link'>

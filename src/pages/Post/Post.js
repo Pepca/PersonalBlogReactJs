@@ -7,7 +7,7 @@ import './_post.scss'
 import { NavLink } from 'react-router-dom'
 
 // DATA
-import { DATA_POSTS } from '../../components/Posts/DATA_POSTS'
+import { posts_API } from '../../API/emulate_API'
 
 // Helper Functions
 import {
@@ -31,7 +31,7 @@ export default React.memo(function Post({ match, history }) {
   const { searchState, setSearchState } = React.useContext(SearchContext)
 
   // Functions
-  const post = DATA_POSTS.find((el) => el.id === parseInt(match.params.id))
+  const post = posts_API.find((el) => el.id === parseInt(match.params.id))
 
   // Render
   return (
@@ -94,7 +94,7 @@ export default React.memo(function Post({ match, history }) {
               Интересно почитать
             </h3>
             <ul className='post-extrainfo__list'>
-              {DATA_POSTS.slice(0, 7).map(
+              {posts_API.slice(0, 7).map(
                 (post) =>
                   post.title !== '' && (
                     <li key={post.id} className='post-extrainfo__item'>

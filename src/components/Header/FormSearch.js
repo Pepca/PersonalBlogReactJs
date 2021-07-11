@@ -1,7 +1,7 @@
 import React from 'react'
 
 // DATA
-import { DATA_POSTS } from '../Posts/DATA_POSTS'
+import { posts_API } from '../../API/emulate_API'
 
 // Router
 import { withRouter, Link } from 'react-router-dom'
@@ -22,7 +22,7 @@ export default React.memo(
 
     // Functions
     const handleChange = (event) => {
-      const result = DATA_POSTS.findIndex(
+      const result = posts_API.findIndex(
         (el) =>
           el.title !== '' &&
           (el.title
@@ -63,7 +63,7 @@ export default React.memo(
           onFocus={(event) => event.target.value !== '' && setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         />
-        {history.location.pathname !== '/search' && DATA_POSTS.length > 0 && (
+        {history.location.pathname !== '/search' && posts_API.length > 0 && (
           <div
             className={`from-header__submenu submenu-form-header${
               isFocused ? ' submenu-form-header-show' : ''
@@ -75,7 +75,7 @@ export default React.memo(
                   Ничего не найдено...
                 </li>
               )}
-              {DATA_POSTS.map(
+              {posts_API.map(
                 (post) =>
                   searchState.searchValue.trim().toUpperCase() !== '' &&
                   (post.title
