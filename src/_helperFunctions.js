@@ -27,6 +27,13 @@ export const closePopup = (setState) => {
   setState(() => false)
 }
 
+export const searching = (first, second, sougth) => {
+  return (
+    first.toUpperCase().search(sougth.toUpperCase().trim()) !== -1 ||
+    second.toUpperCase().search(sougth.toUpperCase().trim()) !== -1
+  )
+}
+
 export const slicerSting = (str, maxLength) => {
   const strArray = str.split('')
 

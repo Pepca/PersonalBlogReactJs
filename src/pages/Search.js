@@ -15,6 +15,9 @@ import { Link } from 'react-router-dom'
 // Context
 import { SearchContext } from '../Context/ContextProvider'
 
+// Helper Functions
+import { searching } from '../_helperFunctions'
+
 export default function Search() {
   // State Context
   const { searchState, setSearchState } = React.useContext(SearchContext)
@@ -32,13 +35,7 @@ export default function Search() {
             (post) =>
               post.title !== '' &&
               post.tag !== '' &&
-              (post.title
-                .toUpperCase()
-                .search(searchState.searchValue.trim().toUpperCase()) !== -1 ||
-                post.tag
-                  .toUpperCase()
-                  .search(searchState.searchValue.trim().toUpperCase()) !==
-                  -1) && (
+              searching(post.title, post.tag, searchState.searchValue) && (
                 <div key={post.id} className='post'>
                   <div className='post__body'>
                     <div className='post__description description-post'>

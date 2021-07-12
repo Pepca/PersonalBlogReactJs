@@ -9,6 +9,9 @@ import { withRouter, Link } from 'react-router-dom'
 // Context
 import { SearchContext } from '../../Context/ContextProvider'
 
+// Helper Functions
+import { searching } from '../../_helperFunctions'
+
 export default React.memo(
   withRouter(function FormSearch({ history }) {
     // Refs
@@ -21,25 +24,34 @@ export default React.memo(
     const { searchState, setSearchState } = React.useContext(SearchContext)
 
     // Functions
-    const handleChange = (event) => {
-      const result = posts_API.findIndex(
-        (el) =>
-          el.title !== '' &&
-          (el.title
-            .toUpperCase()
-            .search(event.target.value.toUpperCase().trim()) !== -1 ||
-            el.tag
-              .toUpperCase()
-              .search(event.target.value.toUpperCase().trim()) !== -1)
-      )
 
-      result !== -1
-        ? setSearchState((searchState.isFound = true))
-        : setSearchState((searchState.isFound = false))
+    const handleChange = (event) => {
+      const result = posts_API.findIndex((el) => {
+        if (el.title !== '') {
+          return searching(el.title, el.tag, event.target.value)
+        }
+      })
+
+      if (result !== -1) {
+        setSearchState((searchState.isFound = true))
+      } else {
+        setSearchState((searchState.isFound = false))
+      }
 
       setSearchState({ ...searchState, searchValue: event.target.value })
 
-      event.target.value !== '' ? setIsFocused(true) : setIsFocused(false)
+      if (event.target.value !== '') {
+        setIsFocused(() => true)
+      } else {
+        setIsFocused(() => false)
+      }
+    }
+
+    const handlerSubmit = (event) => {
+      event.preventDefault()
+      history.push('/search')
+      search.current.blur()
+      search.current.value = ''
     }
 
     // Render
@@ -47,12 +59,7 @@ export default React.memo(
       <form
         action='/'
         className='header__form from-header'
-        onSubmit={(e) => {
-          e.preventDefault()
-          history.push('/search')
-          search.current.blur()
-          search.current.value = ''
-        }}
+        onSubmit={(event) => handlerSubmit(event)}
       >
         <input
           ref={search}
@@ -60,8 +67,10 @@ export default React.memo(
           className='from-header__search'
           placeholder='Поиск по блогу'
           onChange={(event) => handleChange(event)}
-          onFocus={(event) => event.target.value !== '' && setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onFocus={(event) =>
+            event.target.value !== '' && setIsFocused(() => true)
+          }
+          onBlur={() => setIsFocused(() => false)}
         />
         {history.location.pathname !== '/search' && posts_API.length > 0 && (
           <div
@@ -78,14 +87,7 @@ export default React.memo(
               {posts_API.map(
                 (post) =>
                   searchState.searchValue.trim().toUpperCase() !== '' &&
-                  (post.title
-                    .toUpperCase()
-                    .search(searchState.searchValue.trim().toUpperCase()) !==
-                    -1 ||
-                    post.tag
-                      .toUpperCase()
-                      .search(searchState.searchValue.trim().toUpperCase()) !==
-                      -1) &&
+                  searching(post.title, post.tag, searchState.searchValue) &&
                   post.title && (
                     <li key={post.id} className='submenu-form-header__item'>
                       <Link

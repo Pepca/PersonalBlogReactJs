@@ -27,6 +27,10 @@
 }
 
 .control-post {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   &__link {
     position: relative;
     color: $secondary_blue;

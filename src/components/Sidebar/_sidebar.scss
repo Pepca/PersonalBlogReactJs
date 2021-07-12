@@ -58,6 +58,19 @@
 }
 
 .contacts-head-sidebar {
+  &__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__item {
+    margin: 0 10px;
+
+    width: 35px;
+    height: 35px;
+  }
+
   &__link {
     img {
       width: 100%;

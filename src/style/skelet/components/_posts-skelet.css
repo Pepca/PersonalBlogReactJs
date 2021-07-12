@@ -20,7 +20,7 @@
 .post__picture {
   width: 100%;
 
-  background-color: var(--gray-placeholder-1);
+  background-color: var(--placeholder-color);
 }
 
 ._skelet-app .post__picture {
@@ -42,7 +42,7 @@
 
   border-radius: 15px;
 
-  background-color: var(--gray-placeholder-1);
+  background-color: var(--placeholder-color);
 }
 
 ._skelet-app .description-post__text {
@@ -50,33 +50,5 @@
 
   border-radius: 15px;
 
-  background-color: var(--gray-placeholder-1);
-}
-
-.control-post {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-._skelet-app .control-post {
-  height: 20px;
-}
-
-._skelet-app .control-post__link {
-  width: 80px;
-  height: 100%;
-
-  border-radius: 15px;
-
-  background-color: var(--gray-placeholder-1);
-}
-
-._skelet-app .info-control-post {
-  width: 218px;
-  height: 100%;
-
-  border-radius: 15px;
-
-  background-color: var(--gray-placeholder-1);
+  background-color: var(--placeholder-color);
 }

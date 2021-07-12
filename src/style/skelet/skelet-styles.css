@@ -8,8 +8,3 @@
 @import 'components/_stories-skelet.css';
 @import 'components/_addpost-skelet.css';
 @import 'components/_posts-skelet.css';
-
-/* Global */
-body {
-  background-color: var(--primary_color);
-}
