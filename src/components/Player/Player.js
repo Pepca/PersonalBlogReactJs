@@ -53,9 +53,11 @@ export default function Player({ className, src }) {
     const percents = videoCurrentTime / videoDuration
 
     handler.style.left = `${Math.ceil(
-      percents * timeline.offsetWidth - handler.offsetWidth / 2
-    )}px`
-    currentLine.style.width = `${Math.ceil(percents * timeline.offsetWidth)}px`
+      ((percents * timeline.offsetWidth - handler.offsetWidth / 2) /
+        timeline.offsetWidth) *
+        100
+    )}%`
+    currentLine.style.width = `${Math.ceil(percents * 100)}%`
     // }
   }
 
@@ -66,11 +68,12 @@ export default function Player({ className, src }) {
         $this.buffered.start($this.buffered.length - 1 - i) < $this.currentTime
       ) {
         const percents =
-          $this.buffered.end($this.buffered.length - 1 - i) / videoDuration
+          ($this.buffered.end($this.buffered.length - 1 - i) / videoDuration) *
+          100
 
         refPlayer.current.querySelector(
           '.timeline-player__line--ghost'
-        ).style.transform = `translateY(-50%) scaleX(${percents})`
+        ).style.width = `${percents}%`
         break
       }
     }
