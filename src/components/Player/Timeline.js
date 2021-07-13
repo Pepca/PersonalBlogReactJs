@@ -25,7 +25,8 @@ export default React.memo(function Timeline({
 
     let pixels = event.clientX - left
 
-    const widthTimeLine = refTimeline.current.offsetWidth
+    const widthTimeLine =
+      refTimeline.current.offsetWidth - refHandler.current.offsetWidth / 2
 
     if (pixels > widthTimeLine) pixels = widthTimeLine
     if (pixels <= 0) pixels = 0
@@ -49,9 +50,8 @@ export default React.memo(function Timeline({
   }
 
   const setCurrentTime = (event) => {
-    video.current.currentTime = Math.ceil(
+    video.current.currentTime =
       videoDuration * calcPositionX(event).getPercents()
-    )
 
     setVideoCurrentTime(() => video.current.currentTime)
   }
@@ -64,18 +64,29 @@ export default React.memo(function Timeline({
     }
   }
 
-  const mouseMoveInstant = (event) => {
+  const mouseMoveHintActions = (event) => {
     refHint.current.style.left = `${positionX(event)}px`
     refHint.current.textContent = formatTime(
-      Math.ceil(videoDuration * calcPositionX(event).getPercents())
+      Math.floor(videoDuration * calcPositionX(event).getPercents())
     )
   }
 
   const mouseMoveDragging = (event) => {
     if (isDragging) {
-      refHandler.current.style.left = `${positionX(event, 'devided')}px`
+      refHandler.current.style = `left: ${positionX(event, 'devided')}px`
       refCurrentLine.current.style.width = `${positionX(event, 'devided')}px`
     }
+  }
+
+  const mouseMoveEvent = (event) => {
+    mouseMoveHintActions(event)
+    mouseMoveDragging(event)
+  }
+
+  const mouseDownEvent = (event) => {
+    videoPause()
+    setIsDragging(() => true)
+    setCurrentTime(event)
   }
 
   // Render
@@ -83,15 +94,8 @@ export default React.memo(function Timeline({
     <div
       className='timeline-player'
       ref={refTimeline}
-      onMouseDown={(event) => {
-        videoPause()
-        setIsDragging(() => true)
-        setCurrentTime(event)
-      }}
-      onMouseMove={(event) => {
-        mouseMoveInstant(event)
-        mouseMoveDragging(event)
-      }}
+      onMouseDown={(event) => mouseDownEvent(event)}
+      onMouseMove={(event) => mouseMoveEvent(event)}
       onMouseUp={(event) => cancelDragging(event)}
       onMouseLeave={(event) => cancelDragging(event)}
     >

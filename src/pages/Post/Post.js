@@ -78,8 +78,8 @@ export default React.memo(function Post({ match, history }) {
             </div>
           </div>
           <div className='post-text primary-text'>
-            <p>{post.text}</p>
-            <p>{post.text}</p>
+            {post.text !== '' && <p>{post.text}</p>}
+            {post.text !== '' && <p>{post.text}</p>}
             {post.media.alt ? (
               <div className='post-picture'>
                 <img src={post.media.src} alt={post.media.alt} />
@@ -87,7 +87,7 @@ export default React.memo(function Post({ match, history }) {
             ) : (
               <Player className='post-player' src={post.media.src} />
             )}
-            <p>{post.text}</p>
+            {post.text !== '' && <p>{post.text}</p>}
           </div>
           <div className='post-extrainfo'>
             <h3 className='post-extrainfo__title post-title'>

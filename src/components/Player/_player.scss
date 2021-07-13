@@ -242,14 +242,15 @@
   &__line {
     position: absolute;
     top: 50%;
-    left: 0;
+    left: 0px;
 
     height: 3px;
 
-    transform: translate(0, -50%);
+    transform: translateY(-50%);
 
     &--full {
       width: 100%;
+
       background-color: rgba($white, 0.2);
     }
 
