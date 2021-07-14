@@ -1,10 +1,7 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 
 // Styles
 import './style/index.scss'
-
-// Loadable
-import loadable from '@loadable/component'
 
 // Router
 import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
@@ -13,13 +10,14 @@ import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { ContextProvider } from './Context/ContextProvider'
 
 // Pages
-const Home = loadable(() => import('./pages/Home'))
-const Works = loadable(() => import('./pages/Works/Works'))
-const Search = loadable(() => import('./pages/Search'))
-const Post = loadable(() => import('./pages/Post/Post'))
-const Profile = loadable(() => import('./pages/Profile/Profile'))
+const Home = lazy(() => import('./pages/Home'))
+const Works = lazy(() => import('./pages/Works/Works'))
+const Search = lazy(() => import('./pages/Search'))
+const Post = lazy(() => import('./pages/Post/Post'))
+const Profile = lazy(() => import('./pages/Profile/Profile'))
 
 // Components
+import Preloader from './components/Preloader/Preloader'
 import Sidebar from './components/Sidebar/Sidebar'
 import Header from './components/Header/Header'
 // const Sidebar = loadable(() => import('./components/Sidebar/Sidebar'))
@@ -34,18 +32,20 @@ export default function App() {
           <Header />
           <main className='app-content _container'>
             <Switch>
-              <Route exact path='/' render={() => <Home />} />
-              <Route path='/works' render={() => <Works />} />
-              <Route exact path='/search' render={() => <Search />} />
-              <Route
-                exact
-                path='/post:id'
-                render={({ match, history }) => (
-                  <Post match={match} history={history} />
-                )}
-              />
-              <Route path='/profile' render={() => <Profile />} />
-              <Redirect to='/' />
+              <Suspense fallback={<Preloader />}>
+                <Route exact path='/' render={() => <Home />} />
+                <Route path='/works' render={() => <Works />} />
+                <Route exact path='/search' render={() => <Search />} />
+                <Route
+                  exact
+                  path='/post:id'
+                  render={({ match, history }) => (
+                    <Post match={match} history={history} />
+                  )}
+                />
+                <Route path='/profile' render={() => <Profile />} />
+                <Redirect to='/' />
+              </Suspense>
             </Switch>
           </main>
         </Router>
