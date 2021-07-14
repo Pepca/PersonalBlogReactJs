@@ -25,6 +25,7 @@ export default function Player({ className, src }) {
   // Ref
   const refPlayer = useRef(null)
   const video = useRef(null)
+  const refPlayerDuration = useRef(null)
 
   // Function
   const toggleHUD = () => {
@@ -45,20 +46,26 @@ export default function Player({ className, src }) {
   }
 
   const handlerCurrentTime = () => {
-    // if (!isPlayerLoading) {
     const timeline = refPlayer.current.querySelector('.timeline-player')
     const handler = timeline.children[0]
     const currentLine = timeline.children[2]
 
-    const percents = videoCurrentTime / videoDuration
+    const widthTimeline = timeline.offsetWidth
 
-    handler.style.left = `${Math.ceil(
-      ((percents * timeline.offsetWidth - handler.offsetWidth / 2) /
-        timeline.offsetWidth) *
-        100
-    )}%`
-    currentLine.style.width = `${Math.ceil(percents * 100)}%`
-    // }
+    const halfHandlerWidth = handler.offsetWidth / 2
+
+    const percents = Math.floor(videoCurrentTime) / Math.floor(videoDuration)
+
+    handler.style.left = `${
+      ((percents * (widthTimeline - halfHandlerWidth)) / widthTimeline) * 100
+    }%`
+    currentLine.style.width = `${percents * 100}%`
+  }
+
+  const handlerVideoDuration = () => {
+    refPlayerDuration.current.textContent = `${formatTime(
+      Math.floor(videoCurrentTime)
+    )} / ${formatTime(Math.floor(videoDuration))}`
   }
 
   const bufferization = (event) => {
@@ -151,10 +158,12 @@ export default function Player({ className, src }) {
           onLoadedData={() => {
             setIsVideoLoading(() => false)
             handlerCurrentTime()
+            handlerVideoDuration()
           }}
           onTimeUpdate={(event) => {
             setVideoCurrentTime(() => event.target.currentTime)
             handlerCurrentTime()
+            handlerVideoDuration()
           }}
           onCanPlay={() => {
             if (isVideoLoading) {
@@ -240,10 +249,7 @@ export default function Player({ className, src }) {
 
             <VolumeSlider video={video} />
 
-            <div className='player-duration'>
-              {formatTime(Math.floor(videoCurrentTime))} /{' '}
-              {formatTime(Math.floor(videoDuration))}
-            </div>
+            <div className='player-duration' ref={refPlayerDuration}></div>
           </div>
           <div className='player__controls-left'>
             <button
