@@ -18,22 +18,26 @@ export default function Player({ className, src }) {
   const [isEnded, setIsEnded] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [HUDisHidden, setHUDisHidden] = useState(false)
-  const [timeoutID, setTimeoutID] = useState(null)
 
   // Ref
   const refPlayer = useRef(null)
   const refVideo = useRef(null)
   const refPlayerDuration = useRef(null)
+  const refTimeoutID = useRef(null)
 
   // Function
   const toggleHUD = () => {
     setHUDisHidden(() => false)
 
-    if (timeoutID) {
-      clearTimeout(timeoutID)
-      setTimeoutID(() => null)
+    if (refTimeoutID.current) {
+      clearTimeout(refTimeoutID.current)
+
+      refTimeoutID.current = null
     }
-    setTimeoutID(() => setTimeout(() => setHUDisHidden(() => true), 5000))
+
+    refTimeoutID.current = setTimeout(() => {
+      setHUDisHidden(() => true)
+    }, 5000)
   }
 
   const toggleFullscreen = () => {
@@ -122,9 +126,9 @@ export default function Player({ className, src }) {
       document.removeEventListener('keypress', cancelSpaceScroll)
       document.removeEventListener('dragstart', cancelDocDragStartEvent)
 
-      clearTimeout(timeoutID)
+      clearTimeout(refTimeoutID.current)
     }
-  }, [timeoutID])
+  }, [refTimeoutID])
 
   // Render
   return (
@@ -161,13 +165,8 @@ export default function Player({ className, src }) {
             handlerCurrentTime()
             handlerVideoDuration()
           }}
-          onCanPlay={() => {
-            if (isVideoLoading) {
-              setIsVideoLoading(() => false)
-              // videoPlay()
-            }
-          }}
-          onWaiting={(/* , videoPause() */) => setIsVideoLoading(() => true)}
+          onCanPlay={() => isVideoLoading && setIsVideoLoading(() => false)}
+          onWaiting={() => setIsVideoLoading(() => true)}
           onProgress={(event) => bufferization(event)}
           onEnded={() => setIsEnded(() => true)}
         />
