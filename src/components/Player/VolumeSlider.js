@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react'
 
-export default function VolumeSlider({ video }) {
+export default function VolumeSlider({ refVideo }) {
   // Reserved const
   const _volume_value = 'volume-value'
 
   // Helper functions
-  const getLocalStorage = name => localStorage.getItem(name)
+  const getLocalStorage = (name) => localStorage.getItem(name)
 
   const setLocalStorage = (name, value) => localStorage.setItem(name, value)
 
@@ -25,7 +25,7 @@ export default function VolumeSlider({ video }) {
 
   // Functions
   const SVGVolumeIcon = () => {
-    const value = video.current?.volume
+    const value = refVideo.current?.volume
 
     if (value > 0.5)
       return (
@@ -97,7 +97,7 @@ export default function VolumeSlider({ video }) {
       )
   }
 
-  const calcPositionX = event => {
+  const calcPositionX = (event) => {
     const { left } = refVolumeSlider.current.getBoundingClientRect()
 
     let pixels = event.clientX - left - refHandler.current.offsetWidth / 2
@@ -108,7 +108,7 @@ export default function VolumeSlider({ video }) {
 
     return pixels
   }
-  const onSliderMouseEvents = event => {
+  const onSliderMouseEvents = (event) => {
     refHandler.current.style.left = `${calcPositionX(event)}px`
     setVolumeVideo(event)
     setLocalStorage(
@@ -118,22 +118,25 @@ export default function VolumeSlider({ video }) {
   }
 
   const setVolumeVideo = useCallback(
-    event => {
+    (event) => {
       if (event) {
-        video.current.volume = calcPositionX(event) / widthVolumeSlider.current
+        refVideo.current.volume =
+          calcPositionX(event) / widthVolumeSlider.current
       } else {
-        video.current.volume = checkLocalStorage(
+        refVideo.current.volume = checkLocalStorage(
           _volume_value,
           getLocalStorage(_volume_value),
           1
         )
 
         refHandler.current.style.left = `${
-          video.current.volume * 100 <= 80 ? video.current.volume * 100 : 80
+          refVideo.current.volume * 100 <= 80
+            ? refVideo.current.volume * 100
+            : 80
         }%`
       }
     },
-    [video, checkLocalStorage]
+    [refVideo, checkLocalStorage]
   )
 
   // Hooks
@@ -170,11 +173,11 @@ export default function VolumeSlider({ video }) {
       <div
         className='volume-slider'
         ref={refVolumeSlider}
-        onMouseDown={event => {
+        onMouseDown={(event) => {
           setIsDragging(() => true)
           onSliderMouseEvents(event)
         }}
-        onMouseMove={event => isDragging && onSliderMouseEvents(event)}
+        onMouseMove={(event) => isDragging && onSliderMouseEvents(event)}
       >
         <div className='volume-slider-handler' ref={refHandler}></div>
       </div>

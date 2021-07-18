@@ -1,0 +1,49 @@
+.posts {
+  margin-top: 40px;
+}
+
+.post {
+  background-color: $secondary_color;
+  border-radius: 5px;
+  box-shadow: 0 15px 25px rgba($black, 0.35);
+  margin-bottom: 40px;
+
+  ._skelet-app & {
+    width: 100%;
+    min-height: 100%;
+  }
+
+  &__picture {
+    width: 100%;
+    background-color: $placeholder_color;
+
+    ._skelet-app & {
+      @include adaptive-value('height', 400, 330, 0);
+    }
+  }
+
+  &__body {
+    @include adaptive-value('padding-top', 25, 15, 0);
+    @include adaptive-value('padding-left', 30, 15, 0);
+    @include adaptive-value('padding-right', 30, 15, 0);
+    @include adaptive-value('padding-bottom', 18, 15, 0);
+  }
+}
+
+._skelet-app .description-post {
+  margin-bottom: 25px;
+}
+
+._skelet-app .description-post__title {
+  margin-bottom: 25px;
+  @include adaptive-value('width', 700, 190, 0);
+  height: 30px;
+  border-radius: 15px;
+  background-color: $placeholder_color;
+}
+
+._skelet-app .description-post__text {
+  height: 90px;
+  border-radius: 15px;
+  background-color: $placeholder_color;
+}

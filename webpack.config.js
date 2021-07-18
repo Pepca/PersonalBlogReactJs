@@ -36,7 +36,7 @@ const plugins = () => {
     new CopyWebpackPlugin({
       patterns: [
         { from: 'src/favicon.png', to: '' },
-        { from: 'src/style/skelet', to: 'style' },
+        { from: 'src/style/skelet/skelet-styles.css', to: 'skelet-HTML' },
       ],
     }),
     new HtmlWebpackPlugin({

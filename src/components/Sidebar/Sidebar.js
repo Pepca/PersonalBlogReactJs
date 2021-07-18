@@ -9,9 +9,6 @@ import bgPicture from '../../images/Sidebar/bgPicture.jpg'
 // Router
 import { Link } from 'react-router-dom'
 
-// Helper Functions
-import { openPopup } from '../../_helperFunctions'
-
 // Components
 import SidebarHead from './SidebarHead'
 import SendMessage from '../../components/Popup/SendMessage'
@@ -51,7 +48,7 @@ export default function Sidebar() {
             <div className='controls-sidebar__item'>
               <button
                 className='controls-sidebar__btn blue-btn'
-                onClick={() => openPopup(setIsOpen)}
+                onClick={() => setIsOpen(() => true)}
                 type='button'
               >
                 Написать мне

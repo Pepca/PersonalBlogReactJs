@@ -4,7 +4,7 @@ import React, { Suspense, lazy } from 'react'
 import './style/index.scss'
 
 // Router
-import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
 // Context Store
 import { ContextProvider } from './Context/ContextProvider'
@@ -27,26 +27,28 @@ export default function App() {
   return (
     <ContextProvider>
       <div className='app__inner'>
-        <Router basename='/'>
+        <Router>
           <Sidebar />
-          <Header />
-          <main className='app-content _container'>
-            <Switch>
-              <Suspense fallback={<Preloader />}>
-                <Route exact path='/' render={() => <Home />} />
-                <Route path='/works' render={() => <Works />} />
-                <Route exact path='/search' render={() => <Search />} />
-                <Route
-                  exact
-                  path='/post:id'
-                  render={({ match, history }) => (
-                    <Post match={match} history={history} />
-                  )}
-                />
-                <Route path='/profile' render={() => <Profile />} />
-                <Redirect to='/' />
-              </Suspense>
-            </Switch>
+          <main className='app-content'>
+            <Header />
+            <div className='app-content__inner _container'>
+              <Switch>
+                <Suspense fallback={<Preloader />}>
+                  <Route exact path='/' render={() => <Home />} />
+                  <Route path='/works' render={() => <Works />} />
+                  <Route exact path='/search' render={() => <Search />} />
+                  <Route
+                    exact
+                    path='/post:id'
+                    render={({ match, history }) => (
+                      <Post match={match} history={history} />
+                    )}
+                  />
+                  <Route path='/profile' render={() => <Profile />} />
+                  {/* <Redirect to='/' /> */}
+                </Suspense>
+              </Switch>
+            </div>
           </main>
         </Router>
       </div>

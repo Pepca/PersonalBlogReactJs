@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 
 // Components
 import Nav from './Nav'
+import Burger from './Burger'
 import FormSearch from './FormSearch'
 
 export default function Header() {
@@ -16,6 +17,7 @@ export default function Header() {
     <header className='header' id='fixed-element'>
       <div className='header__inner'>
         <div className='header__right'>
+          <Burger />
           <Nav />
         </div>
         <div className='header__left'>

@@ -4,9 +4,7 @@ import React, { useState, useRef } from 'react'
 import { formatTime } from '../../_helperFunctions'
 
 export default React.memo(function Timeline({
-  video,
-  videoDuration,
-  setVideoCurrentTime,
+  refVideo,
   videoPlay,
   videoPause,
 }) {
@@ -50,10 +48,8 @@ export default React.memo(function Timeline({
   }
 
   const setCurrentTime = (event) => {
-    video.current.currentTime =
-      videoDuration * calcPositionX(event).getPercents()
-
-    setVideoCurrentTime(() => video.current.currentTime)
+    refVideo.current.currentTime =
+      refVideo.current.duration * calcPositionX(event).getPercents()
   }
 
   const cancelDragging = (event) => {
@@ -67,7 +63,7 @@ export default React.memo(function Timeline({
   const mouseMoveHintActions = (event) => {
     refHint.current.style.left = `${positionX(event)}px`
     refHint.current.textContent = formatTime(
-      Math.floor(videoDuration * calcPositionX(event).getPercents())
+      Math.floor(refVideo.current.duration * calcPositionX(event).getPercents())
     )
   }
 

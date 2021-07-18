@@ -10,11 +10,7 @@ import { NavLink } from 'react-router-dom'
 import { posts_API } from '../../API/emulate_API'
 
 // Helper Functions
-import {
-  transformDateTime,
-  openPopup,
-  slicerSting,
-} from '../../_helperFunctions'
+import { transformDateTime, slicerSting } from '../../_helperFunctions'
 
 // Components
 import Share from '../../components/Popup/Share'
@@ -50,7 +46,7 @@ export default React.memo(function Post({ match, history }) {
               вернуться назад
             </NavLink>
             <button
-              onClick={() => openPopup(setIsOpen)}
+              onClick={() => setIsOpen(() => true)}
               className='post-overhead__share'
               type='button'
             >

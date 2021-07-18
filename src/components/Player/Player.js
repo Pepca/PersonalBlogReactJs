@@ -17,14 +17,12 @@ export default function Player({ className, src }) {
   const [isVideoLoading, setIsVideoLoading] = useState(true)
   const [isEnded, setIsEnded] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
-  const [videoCurrentTime, setVideoCurrentTime] = useState(0)
-  const [videoDuration, setVideoDuration] = useState(0)
   const [HUDisHidden, setHUDisHidden] = useState(false)
   const [timeoutID, setTimeoutID] = useState(null)
 
   // Ref
   const refPlayer = useRef(null)
-  const video = useRef(null)
+  const refVideo = useRef(null)
   const refPlayerDuration = useRef(null)
 
   // Function
@@ -54,7 +52,9 @@ export default function Player({ className, src }) {
 
     const halfHandlerWidth = handler.offsetWidth / 2
 
-    const percents = Math.floor(videoCurrentTime) / Math.floor(videoDuration)
+    const percents =
+      Math.floor(refVideo.current.currentTime) /
+      Math.floor(refVideo.current.duration)
 
     handler.style.left = `${
       ((percents * (widthTimeline - halfHandlerWidth)) / widthTimeline) * 100
@@ -64,8 +64,8 @@ export default function Player({ className, src }) {
 
   const handlerVideoDuration = () => {
     refPlayerDuration.current.textContent = `${formatTime(
-      Math.floor(videoCurrentTime)
-    )} / ${formatTime(Math.floor(videoDuration))}`
+      Math.floor(refVideo.current.currentTime)
+    )} / ${formatTime(Math.floor(refVideo.current.duration))}`
   }
 
   const bufferization = (event) => {
@@ -75,7 +75,7 @@ export default function Player({ className, src }) {
         $this.buffered.start($this.buffered.length - 1 - i) < $this.currentTime
       ) {
         const percents =
-          ($this.buffered.end($this.buffered.length - 1 - i) / videoDuration) *
+          ($this.buffered.end($this.buffered.length - 1 - i) / $this.duration) *
           100
 
         refPlayer.current.querySelector(
@@ -87,14 +87,14 @@ export default function Player({ className, src }) {
   }
 
   const videoPlay = () => {
-    if (video.current.paused && !isPlay) {
-      video.current.play().catch((err) => console.log(err))
+    if (refVideo.current.paused && !isPlay) {
+      refVideo.current.play().catch((err) => console.log(err))
     }
   }
 
   const videoPause = () => {
-    if (!video.current.paused && isPlay) {
-      video.current.pause()
+    if (!refVideo.current.paused && isPlay) {
+      refVideo.current.pause()
     }
   }
 
@@ -137,7 +137,7 @@ export default function Player({ className, src }) {
     >
       <div className={`player__video${HUDisHidden ? ' HUDisHidden' : ''}`}>
         <video
-          ref={video}
+          ref={refVideo}
           src={src}
           controlsList='nodownload'
           onPlaying={() => {
@@ -151,27 +151,23 @@ export default function Player({ className, src }) {
             if (!isVideoLoading) isEnded ? videoPlay() : togglePlay()
             localStorage.setItem('prev-state-isPlay', isPlay)
           }}
-          onLoadedMetadata={(event) => {
-            setVideoDuration(() => event.target.duration)
-            setVideoCurrentTime(() => event.target.currentTime)
-          }}
+          // onLoadedMetadata={(event) => {}}
           onLoadedData={() => {
             setIsVideoLoading(() => false)
             handlerCurrentTime()
             handlerVideoDuration()
           }}
-          onTimeUpdate={(event) => {
-            setVideoCurrentTime(() => event.target.currentTime)
+          onTimeUpdate={() => {
             handlerCurrentTime()
             handlerVideoDuration()
           }}
           onCanPlay={() => {
             if (isVideoLoading) {
               setIsVideoLoading(() => false)
-              videoPlay()
+              // videoPlay()
             }
           }}
-          onWaiting={() => (setIsVideoLoading(() => true), videoPause())}
+          onWaiting={(/* , videoPause() */) => setIsVideoLoading(() => true)}
           onProgress={(event) => bufferization(event)}
           onEnded={() => setIsEnded(() => true)}
         />
@@ -179,31 +175,29 @@ export default function Player({ className, src }) {
 
       {isVideoLoading && <Loader />}
 
-      {!isVideoLoading &&
-        videoDuration !== 0 &&
-        videoCurrentTime === videoDuration && (
-          <div className='player-notify-icon notify-replay-icon'>
-            <svg height='100%' version='1.1' viewBox='0 0 16 20' width='100%'>
-              <title />
-              <desc />
-              <defs />
-              <g fill='none' id='Page-1' stroke='none'>
-                <g
-                  fill='#fff'
-                  id='Icons-AV'
-                  transform='translate(-2.000000, -127.000000)'
-                >
-                  <g id='replay' transform='translate(2.000000, 127.000000)'>
-                    <path
-                      d='M8,4 L8,0 L3,5 L8,10 L8,6 C11.3,6 14,8.7 14,12 C14,15.3 11.3,18 8,18 C4.7,18 2,15.3 2,12 L0,12 C0,16.4 3.6,20 8,20 C12.4,20 16,16.4 16,12 C16,7.6 12.4,4 8,4 L8,4 Z'
-                      id='Shape'
-                    />
-                  </g>
+      {!isVideoLoading && isEnded && (
+        <div className='player-notify-icon notify-replay-icon'>
+          <svg height='100%' version='1.1' viewBox='0 0 16 20' width='100%'>
+            <title />
+            <desc />
+            <defs />
+            <g fill='none' id='Page-1' stroke='none'>
+              <g
+                fill='#fff'
+                id='Icons-AV'
+                transform='translate(-2.000000, -127.000000)'
+              >
+                <g id='replay' transform='translate(2.000000, 127.000000)'>
+                  <path
+                    d='M8,4 L8,0 L3,5 L8,10 L8,6 C11.3,6 14,8.7 14,12 C14,15.3 11.3,18 8,18 C4.7,18 2,15.3 2,12 L0,12 C0,16.4 3.6,20 8,20 C12.4,20 16,16.4 16,12 C16,7.6 12.4,4 8,4 L8,4 Z'
+                    id='Shape'
+                  />
                 </g>
               </g>
-            </svg>
-          </div>
-        )}
+            </g>
+          </svg>
+        </div>
+      )}
       <div
         className='player__panel'
         style={{
@@ -212,9 +206,7 @@ export default function Player({ className, src }) {
         }}
       >
         <Timeline
-          videoDuration={videoDuration}
-          video={video}
-          setVideoCurrentTime={setVideoCurrentTime}
+          refVideo={refVideo}
           videoPlay={videoPlay}
           videoPause={videoPause}
         />
@@ -251,7 +243,7 @@ export default function Player({ className, src }) {
               </svg>
             </button>
 
-            <VolumeSlider video={video} />
+            <VolumeSlider refVideo={refVideo} />
 
             <div className='player-duration' ref={refPlayerDuration}></div>
           </div>
@@ -259,9 +251,10 @@ export default function Player({ className, src }) {
             <button
               className='player-button fullscreen-control'
               ttile='fullscreen change player'
-              onClick={(event) => (
-                event.currentTarget.blur(), toggleFullscreen()
-              )}
+              onClick={(event) => {
+                event.currentTarget.blur()
+                toggleFullscreen()
+              }}
             >
               {isFullscreen ? (
                 <svg viewBox='0 0 96 96'>

@@ -3,30 +3,6 @@ export const transformDateTime = (strDate) => {
   return dateTime
 }
 
-export const openPopup = (setState) => {
-  const scrollbarWidth = window.innerWidth - document.body.offsetWidth
-
-  document.body.classList.add('lock')
-
-  document.getElementById(
-    'fixed-element'
-  ).style.paddingRight = `${scrollbarWidth}px`
-
-  document.body.style.paddingRight = `${scrollbarWidth}px`
-
-  setState(() => true)
-}
-
-export const closePopup = (setState) => {
-  document.body.classList.remove('lock')
-
-  document.body.style.paddingRight = '0'
-
-  document.getElementById('fixed-element').style.paddingRight = '0'
-
-  setState(() => false)
-}
-
 export const searching = (first, second, sougth) => {
   return (
     first.toUpperCase().search(sougth.toUpperCase().trim()) !== -1 ||

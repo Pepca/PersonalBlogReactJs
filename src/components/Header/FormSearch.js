@@ -58,13 +58,13 @@ export default React.memo(
     return (
       <form
         action='/'
-        className='header__form from-header'
+        className='header__form form-header'
         onSubmit={(event) => handlerSubmit(event)}
       >
         <input
           ref={search}
           type='text'
-          className='from-header__search'
+          className='form-header__search'
           placeholder='Поиск по блогу'
           onChange={(event) => handleChange(event)}
           onFocus={(event) =>
@@ -74,7 +74,7 @@ export default React.memo(
         />
         {history.location.pathname !== '/search' && posts_API.length > 0 && (
           <div
-            className={`from-header__submenu submenu-form-header${
+            className={`form-header__submenu submenu-form-header${
               isFocused ? ' submenu-form-header-show' : ''
             }`}
           >

@@ -1,0 +1,11 @@
+@import '../variables';
+@import '../mixin';
+@import 'reset';
+@import 'global';
+
+// Components
+@import 'sidebar-skelet';
+@import 'header-skelet';
+@import 'stories-skelet';
+@import 'addPost-skelet';
+@import 'post-skelet';

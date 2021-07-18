@@ -1,8 +1,5 @@
 import React from 'react'
 
-// SecFunc
-import { closePopup } from '../../_helperFunctions'
-
 // Media
 import Facebook from '../../images/Share/facebook.svg'
 import Twitter from '../../images/Share/twitter.svg'
@@ -13,14 +10,14 @@ export default function Share({ isOpen, setIsOpen }) {
   return (
     <div
       className={`popup${isOpen ? ' popup-open' : ''}`}
-      onClick={() => closePopup(setIsOpen)}
+      onClick={() => setIsOpen(() => false)}
     >
       <main className='popup-content' onClick={(e) => e.stopPropagation()}>
         <div className='popup-close'>
           <button
             className='btn-close-popup'
             type='button'
-            onClick={() => closePopup(setIsOpen)}
+            onClick={() => setIsOpen(() => false)}
           />
         </div>
         <ul className='popup-list'>

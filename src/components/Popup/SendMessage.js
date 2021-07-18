@@ -2,21 +2,18 @@ import React from 'react'
 
 import './_popup.scss'
 
-// SecFunc
-import { closePopup } from '../../_helperFunctions'
-
 export default function SendMessage({ isOpen, setIsOpen }) {
   return (
     <div
       className={`popup${isOpen ? ' popup-open' : ''}`}
-      onClick={() => closePopup(setIsOpen)}
+      onClick={() => setIsOpen(() => false)}
     >
       <main className='popup-content' onClick={(e) => e.stopPropagation()}>
         <div className='popup-close'>
           <button
             className='btn-close-popup'
             type='button'
-            onClick={() => closePopup(setIsOpen)}
+            onClick={() => setIsOpen(() => false)}
           />
         </div>
         <form action='/' method='post' className='popup-form'>
