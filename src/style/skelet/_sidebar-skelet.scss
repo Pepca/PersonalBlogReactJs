@@ -5,7 +5,7 @@
   // flex: 0 0 400px;
   flex-grow: 0;
   flex-shrink: 0;
-  @include adaptive-value('flex-basis', 400, 280, 0);
+  @include adaptive-value('flex-basis', 400, 250, 0);
   height: 100vh;
   background-color: $secondary_color;
   box-shadow: 5px 0 15px rgba($bxs_color, 0.1);
@@ -28,7 +28,7 @@
   }
 
   &-description {
-    padding: 0 30px;
+    padding: 0 adaptive-value(30, 13);
 
     ._skelet-app & {
       p {
@@ -58,8 +58,8 @@
 .head-sidebar {
   width: 100%;
 
-  padding: 0 30px;
-  margin-top: adaptive-value(-65, -140);
+  padding: 0 adaptive-value(30, 13);
+  margin-top: adaptive-value(-65, -150);
 
   &::after {
     content: '';
@@ -102,6 +102,7 @@
   width: 100%;
 
   padding: 0 30px;
+  // padding: 0 adaptive-value(30, 31);
 
   display: flex;
   align-items: center;

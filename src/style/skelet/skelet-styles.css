@@ -85,14 +85,14 @@ body {
     width: 100%;
     height: calc(100vh - 45px);
     margin: 45px 0 0;
-    padding-top: 60px;
+    padding-top: calc( 30px + 30 * ((100vw - 320px) / 1600));
     overflow: hidden auto; }
 
 ._container {
   max-width: 1050px;
   margin: 0 auto;
-  padding-right: 25px;
-  padding-left: 25px; }
+  padding-right: calc( 15px + 10 * ((100vw - 320px) / 1600));
+  padding-left: calc( 15px + 10 * ((100vw - 320px) / 1600)); }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace; }
@@ -117,11 +117,11 @@ button {
   color: #fff; }
 
 .primary-title {
-  font-size: calc( 16px + 7 * ((100vw - 320px) / 1600));
+  font-size: calc( 15px + 8 * ((100vw - 320px) / 1600));
   line-height: 21px; }
 
 .primary-text {
-  font-size: calc( 14px + 3 * ((100vw - 320px) / 1600));
+  font-size: calc( 13px + 4 * ((100vw - 320px) / 1600));
   line-height: calc( 20px + 4 * ((100vw - 320px) / 1600)); }
 
 .primary-time {
@@ -154,7 +154,7 @@ button {
 .sidebar {
   flex-grow: 0;
   flex-shrink: 0;
-  flex-basis: calc( 280px + 120 * ((100vw - 320px) / 1600));
+  flex-basis: calc( 250px + 150 * ((100vw - 320px) / 1600));
   height: 100vh;
   background-color: #202020;
   box-shadow: 5px 0 15px rgba(5, 5, 5, 0.1); }
@@ -171,7 +171,7 @@ button {
     width: 100%;
     min-height: 240px; }
   .sidebar-description {
-    padding: 0 30px; }
+    padding: 0 calc( 13px + 17 * ((100vw - 320px) / 1600)); }
     ._skelet-app .sidebar-description p {
       width: 340px;
       height: 120px;
@@ -187,8 +187,8 @@ button {
 
 .head-sidebar {
   width: 100%;
-  padding: 0 30px;
-  margin-top: calc( -140px + 75 * ((100vw - 320px) / 1600)); }
+  padding: 0 calc( 13px + 17 * ((100vw - 320px) / 1600));
+  margin-top: calc( -150px + 85 * ((100vw - 320px) / 1600)); }
   .head-sidebar::after {
     content: '';
     display: block;
@@ -231,7 +231,7 @@ button {
   top: 0;
   right: 0;
   z-index: 100;
-  width: calc(100% - calc(280px + 120 * ((100vw - 320px) / 1600)));
+  width: calc(100% - calc(250px + 150 * ((100vw - 320px) / 1600)));
   height: 45px;
   background-color: #0d0d0d;
   box-shadow: 0 5px 22px rgba(0, 0, 0, 0.25); }
@@ -327,7 +327,7 @@ button {
 .addpost-form {
   /* Addpost Variables */
   width: 100%;
-  margin-top: 40px;
+  margin-top: calc( 20px + 20 * ((100vw - 320px) / 1600));
   box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.45); }
   ._skelet-app .addpost-form {
     border-radius: 15px;
@@ -335,13 +335,13 @@ button {
     background-color: #333333; }
 
 .posts {
-  margin-top: 40px; }
+  margin-top: calc( 20px + 20 * ((100vw - 320px) / 1600)); }
 
 .post {
   background-color: #202020;
   border-radius: 5px;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.35);
-  margin-bottom: 40px; }
+  margin-bottom: calc( 20px + 20 * ((100vw - 320px) / 1600)); }
   ._skelet-app .post {
     width: 100%;
     min-height: 100%; }
@@ -351,10 +351,10 @@ button {
     ._skelet-app .post__picture {
       height: calc( 330px + 70 * ((100vw - 320px) / 1600)); }
   .post__body {
-    padding-top: calc( 15px + 10 * ((100vw - 320px) / 1600));
+    padding-top: calc( 13px + 12 * ((100vw - 320px) / 1600));
     padding-left: calc( 15px + 15 * ((100vw - 320px) / 1600));
     padding-right: calc( 15px + 15 * ((100vw - 320px) / 1600));
-    padding-bottom: calc( 15px + 3 * ((100vw - 320px) / 1600)); }
+    padding-bottom: calc( 13px + 5 * ((100vw - 320px) / 1600)); }
 
 ._skelet-app .description-post {
   margin-bottom: 25px; }

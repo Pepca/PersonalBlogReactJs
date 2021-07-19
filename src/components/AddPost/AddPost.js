@@ -12,7 +12,9 @@ export default function AddPost() {
   const refTextarea = React.useRef(null)
 
   // State
-  const [textareaInitH] = React.useState(95)
+  const [textareaHeight, setTextareaHeight] = React.useState(
+    70 + 25 * ((window.innerWidth - 320) / 1600)
+  )
   const [isFocus, setIsFocus] = React.useState(false)
 
   // Functions
@@ -21,8 +23,12 @@ export default function AddPost() {
   }
 
   const handleChange = (event) => {
-    event.target.style.height = `${textareaInitH}px`
+    event.target.style.height = `${textareaHeight}px`
     event.target.style.height = `${event.target.scrollHeight}px`
+  }
+
+  const resizeWindow = () => {
+    setTextareaHeight(() => 70 + 25 * ((window.innerWidth - 320) / 1600))
   }
 
   const docBlur = (event) => {
@@ -34,8 +40,11 @@ export default function AddPost() {
   React.useEffect(() => {
     document.addEventListener('click', docBlur)
 
+    window.addEventListener('resize', resizeWindow)
+
     return () => {
       document.removeEventListener('click', docBlur)
+      window.removeEventListener('resize', resizeWindow)
     }
   }, [])
 
@@ -56,6 +65,9 @@ export default function AddPost() {
           ref={refTextarea}
           onChange={(event) => handleChange(event)}
           onFocus={() => setIsFocus(() => true)}
+          style={{
+            height: `${textareaHeight}px`,
+          }}
         />
       </div>
       <input

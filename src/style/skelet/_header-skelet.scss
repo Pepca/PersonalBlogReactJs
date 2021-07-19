@@ -7,7 +7,7 @@
   right: 0;
   z-index: 100;
 
-  width: calc(100% - calc(280px + 120 * ((100vw - 320px) / 1600)));
+  width: calc(100% - calc(250px + 150 * ((100vw - 320px) / 1600)));
   height: 45px;
 
   background-color: $bg-color;

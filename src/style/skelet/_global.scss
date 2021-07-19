@@ -21,7 +21,7 @@ body {
     width: 100%;
     height: calc(100vh - 45px);
     margin: 45px 0 0;
-    padding-top: 60px;
+    padding-top: adaptive-value(60, 30);
     overflow: hidden auto;
   }
 }
@@ -29,8 +29,8 @@ body {
 ._container {
   max-width: $maxWidthContainer + px;
   margin: 0 auto;
-  padding-right: 25px;
-  padding-left: 25px;
+  padding-right: adaptive-value(25, 15);
+  padding-left: adaptive-value(25, 15);
 }
 
 code {
@@ -58,20 +58,16 @@ button {
 }
 
 .primary-title {
-  // font-size: 23px;
-  @include adaptive-value('font-size', 23, 16, 0);
+  @include adaptive-value('font-size', 23, 15, 0);
   line-height: 21px;
 }
 
 .primary-text {
-  // font-size: 17px;
-  @include adaptive-value('font-size', 17, 14, 0);
-  // line-height: 24px;
+  @include adaptive-value('font-size', 17, 13, 0);
   @include adaptive-value('line-height', 24, 20, 0);
 }
 
 .primary-time {
-  // font-size: 14px;
   @include adaptive-value('font-size', 14, 12, 0);
 
   color: $gray;

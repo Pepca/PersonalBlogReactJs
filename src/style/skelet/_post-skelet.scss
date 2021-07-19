@@ -1,12 +1,12 @@
 .posts {
-  margin-top: 40px;
+  margin-top: adaptive-value(40, 20);
 }
 
 .post {
   background-color: $secondary_color;
   border-radius: 5px;
   box-shadow: 0 15px 25px rgba($black, 0.35);
-  margin-bottom: 40px;
+  margin-bottom: adaptive-value(40, 20);
 
   ._skelet-app & {
     width: 100%;
@@ -23,10 +23,10 @@
   }
 
   &__body {
-    @include adaptive-value('padding-top', 25, 15, 0);
+    @include adaptive-value('padding-top', 25, 13, 0);
     @include adaptive-value('padding-left', 30, 15, 0);
     @include adaptive-value('padding-right', 30, 15, 0);
-    @include adaptive-value('padding-bottom', 18, 15, 0);
+    @include adaptive-value('padding-bottom', 18, 13, 0);
   }
 }
 

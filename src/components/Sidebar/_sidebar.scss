@@ -73,7 +73,7 @@
   &__btn {
     font-size: adaptive-value(17, 10);
 
-    padding: 15px 25px;
+    padding: adaptive-value(15, 9.9) adaptive-value(25, 16.4);
 
     border-radius: 25px;
   }

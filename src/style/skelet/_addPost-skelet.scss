@@ -1,7 +1,7 @@
 .addpost-form {
   /* Addpost Variables */
   width: 100%;
-  margin-top: 40px;
+  margin-top: adaptive-value(40, 20);
   box-shadow: 0px 15px 25px rgba($black, 0.45);
 
   ._skelet-app & {
