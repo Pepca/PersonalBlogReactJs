@@ -9,7 +9,7 @@ import Send from '../../images/AddPost/send.svg'
 
 export default function AddPost() {
   // Refs
-  const textarea = React.useRef(null)
+  const refTextarea = React.useRef(null)
 
   // State
   const [textareaInitH] = React.useState(95)
@@ -25,29 +25,37 @@ export default function AddPost() {
     event.target.style.height = `${event.target.scrollHeight}px`
   }
 
+  const docBlur = (event) => {
+    !event.target.closest('.addpost-form') &&
+      refTextarea.current?.value === '' &&
+      setIsFocus(() => false)
+  }
+
+  React.useEffect(() => {
+    document.addEventListener('click', docBlur)
+
+    return () => {
+      document.removeEventListener('click', docBlur)
+    }
+  }, [])
+
   // Render
   return (
     <form
       action='/'
-      className='addpost-form'
+      className={`addpost-form${isFocus ? ' _focused' : ''}`}
       method='post'
       encType='multipart/form-data'
       onSubmit={(event) => handleSubmit(event)}
     >
-      <div
-        className='addpost-form__textarea'
-        style={isFocus ? { width: '100%', marginBottom: '60px' } : {}}
-      >
+      <div className='addpost-form__textarea'>
         <textarea
           name='decription-post'
           className='textarea-addpost'
           placeholder='Напишите что-нибудь'
-          ref={textarea}
-          onFocus={() => setIsFocus(true)}
-          onBlur={(event) => {
-            event.target.scrollHeight === textareaInitH && setIsFocus(false)
-          }}
+          ref={refTextarea}
           onChange={(event) => handleChange(event)}
+          onFocus={() => setIsFocus(() => true)}
         />
       </div>
       <input

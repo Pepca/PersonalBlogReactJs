@@ -14,7 +14,7 @@ import FormSearch from './FormSearch'
 export default function Header() {
   // Render
   return (
-    <header className='header' id='fixed-element'>
+    <header className='header'>
       <div className='header__inner'>
         <div className='header__right'>
           <Burger />

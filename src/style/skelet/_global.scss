@@ -58,17 +58,21 @@ button {
 }
 
 .primary-title {
-  font-size: 23px;
+  // font-size: 23px;
+  @include adaptive-value('font-size', 23, 16, 0);
   line-height: 21px;
 }
 
 .primary-text {
-  font-size: 17px;
-  line-height: 24px;
+  // font-size: 17px;
+  @include adaptive-value('font-size', 17, 14, 0);
+  // line-height: 24px;
+  @include adaptive-value('line-height', 24, 20, 0);
 }
 
 .primary-time {
-  font-size: 14px;
+  // font-size: 14px;
+  @include adaptive-value('font-size', 14, 12, 0);
 
   color: $gray;
 }

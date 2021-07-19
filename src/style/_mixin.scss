@@ -37,5 +37,13 @@
     );
   }
 }
-
 // /Adaptive mixin
+
+// Functions
+@function adaptive-value($maxValue, $minValue) {
+  $addValue: $maxValue - $minValue;
+  @return calc(
+    #{$minValue + px} + #{$addValue} * ((100vw - 320px) / #{$maxWidth - 320})
+  );
+}
+// /Functions

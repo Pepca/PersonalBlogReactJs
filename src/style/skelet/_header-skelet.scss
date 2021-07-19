@@ -1,13 +1,17 @@
 .header {
   /* Header variables */
   $bg-color: #0d0d0d;
+
   position: fixed;
   top: 0;
   right: 0;
   z-index: 100;
-  width: calc(100% - 400px);
+
+  width: calc(100% - calc(280px + 120 * ((100vw - 320px) / 1600)));
   height: 45px;
+
   background-color: $bg-color;
+
   box-shadow: 0 5px 22px rgba($black, 0.25);
 
   @media (max-width: $md2 + px) {

@@ -2,7 +2,10 @@
   // position: fixed;
   // top: 0;
   // left: 0;
-  flex: 0 0 400px;
+  // flex: 0 0 400px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  @include adaptive-value('flex-basis', 400, 280, 0);
   height: 100vh;
   background-color: $secondary_color;
   box-shadow: 5px 0 15px rgba($bxs_color, 0.1);
@@ -31,7 +34,9 @@
       p {
         width: 340px;
         height: 120px;
+
         background-color: $placeholder_color;
+
         border-radius: 15px;
       }
     }
@@ -39,9 +44,12 @@
     &::after {
       content: '';
       display: block;
+
       width: 100%;
       height: 1px;
-      margin: 35px 0;
+
+      margin: adaptive-value(35, 10) 0;
+
       background-color: $border_color;
     }
   }
@@ -49,40 +57,52 @@
 
 .head-sidebar {
   width: 100%;
+
   padding: 0 30px;
-  margin-top: -65px;
+  margin-top: adaptive-value(-65, -140);
 
   &::after {
     content: '';
     display: block;
+
     width: 100%;
     height: 1px;
-    margin: 35px 0;
+
+    margin: adaptive-value(35, 10) 0;
+
     background-color: $border_color;
   }
 
   &__avatar {
-    max-width: 150px;
-    max-height: 150px;
-    min-width: 150px;
-    min-height: 150px;
+    max-width: adaptive-value(150, 116);
+    max-height: adaptive-value(150, 116);
+    min-width: adaptive-value(150, 116);
+    min-height: adaptive-value(150, 116);
+
     border-radius: 50%;
+
     background-color: $placeholder_color;
+
     margin: 0 auto 19px;
   }
 }
 
 ._skelet-app .info-head-sidebar {
   margin: 0 auto 30px;
+
   width: 240px;
   height: 60px;
+
   background-color: $placeholder_color;
+
   border-radius: 15px;
 }
 
 .controls-sidebar {
   width: 100%;
+
   padding: 0 30px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -91,6 +111,8 @@
 ._skelet-app .controls-sidebar__item {
   width: 162px;
   height: 50px;
+
   background-color: $placeholder_color;
+
   border-radius: 25px;
 }

@@ -1,8 +1,10 @@
 @import '../../style/variables';
+@import '../../style/mixin';
 
 .post {
   &__picture {
-    min-height: 400px;
+    // min-height: 400px;
+    @include adaptive-value('min-height', 400, 110, 0);
 
     img {
       width: 100%;
@@ -14,10 +16,12 @@
 }
 
 .description-post {
-  margin-bottom: 16px;
+  // margin-bottom: 16px;
+  @include adaptive-value('margin-bottom', 16, 10, 0);
 
   &__title {
-    margin-bottom: 15px;
+    // margin-bottom: 15px;
+    @include adaptive-value('margin-bottom', 15, 10, 0);
     font-weight: 500;
   }
 
@@ -37,7 +41,8 @@
 
     padding: 7px;
 
-    font-size: 17px;
+    // font-size: 17px;
+    @include adaptive-value('font-size', 17, 14, 0);
     // line-height: 16px;
 
     &:after {
@@ -82,16 +87,25 @@
 
       border-radius: 50%;
 
-      margin: 0 15px 1px;
+      // margin: 0 15px 1px;
+      margin-top: 0;
+      @include adaptive-value('margin-left', 15, 10, 0);
+      @include adaptive-value('margin-right', 15, 10, 0);
+      margin-bottom: 1px;
 
       background-color: $elemnt_color;
+
+      @media (max-width: 360px) {
+        display: none;
+      }
     }
   }
 
   &__tag {
     cursor: pointer;
 
-    font-size: 14px;
+    // font-size: 14px;
+    @include adaptive-value('font-size', 14, 12, 0);
 
     color: $gray;
 
@@ -100,6 +114,10 @@
     &:hover {
       text-decoration: underline;
       color: $primary_text_color;
+    }
+
+    @media (max-width: 360px) {
+      display: none;
     }
   }
 }
