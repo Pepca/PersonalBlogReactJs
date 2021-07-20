@@ -9,32 +9,54 @@ import bgPicture from '../../images/Sidebar/bgPicture.jpg'
 // Router
 import { Link } from 'react-router-dom'
 
+// Context
+import { Context } from '../../Context/ContextProvider'
+
 // Components
 import SidebarHead from './SidebarHead'
 import SendMessage from '../../components/Popup/SendMessage'
+import SidebarNav from './SidebarNav'
 
 export default function Sidebar() {
   // State
   const [isOpen, setIsOpen] = React.useState(false)
 
+  // Context
+  const { state, dispatch } = React.useContext(Context)
+
   // Render
   return (
     <>
       <SendMessage isOpen={isOpen} setIsOpen={setIsOpen} />
-      <aside className='sidebar'>
+      {state.windowWidth <= 991.98 && (
+        <div
+          className='sidebar__mask'
+          onClick={() => dispatch.setSidebarIsOpen(() => false)}
+          style={{
+            opacity: state.sidebarIsOpen ? '1' : '0',
+            visibility: state.sidebarIsOpen ? 'visible' : 'hidden',
+          }}
+        ></div>
+      )}
+      <aside
+        className={`sidebar${state.sidebarIsOpen ? ' _sidebarIsOpen' : ''}`}
+      >
         <div className='sidebar__inner'>
           <div className='sidebar-picture'>
             <img src={bgPicture} alt='bgPicture' />
           </div>
           <SidebarHead />
-          <div className='sidebar-description'>
-            <p>
-              Front-end разработчик. Практик верстки сайтов. Созданием сайтов
-              занимаюсь с 2012 года. Работал в нескольких ИТ компаниях и
-              наработал более 10 000 часов в создании сайтов различной
-              сложности.
-            </p>
-          </div>
+          {state.windowWidth > 991.98 && (
+            <div className='sidebar-description'>
+              <p>
+                Front-end разработчик. Практик верстки сайтов. Созданием сайтов
+                занимаюсь с 2012 года. Работал в нескольких ИТ компаниях и
+                наработал более 10 000 часов в создании сайтов различной
+                сложности.
+              </p>
+            </div>
+          )}
+          {state.windowWidth <= 991.98 && <SidebarNav />}
           <div className='sidebar__controls controls-sidebar'>
             <div className='controls-sidebar__item'>
               <Link

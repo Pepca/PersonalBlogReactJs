@@ -13,11 +13,11 @@ import { transformDateTime } from '../../_helperFunctions'
 import { NavLink } from 'react-router-dom'
 
 // Context
-import { SearchContext } from '../../Context/ContextProvider'
+import { Context } from '../../Context/ContextProvider'
 
 export default function Posts() {
   // State Context
-  const { searchState, setSearchState } = React.useContext(SearchContext)
+  const { state, dispatch } = React.useContext(Context)
 
   // Render
   return (
@@ -68,8 +68,8 @@ export default function Posts() {
                         <NavLink
                           to='/search'
                           onClick={(e) =>
-                            setSearchState({
-                              ...searchState,
+                            dispatch.setSearchState({
+                              ...state.searchState,
                               searchValue: e.target.text,
                             })
                           }

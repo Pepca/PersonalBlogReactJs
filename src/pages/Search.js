@@ -13,14 +13,17 @@ import { transformDateTime } from '../_helperFunctions'
 import { Link } from 'react-router-dom'
 
 // Context
-import { SearchContext } from '../Context/ContextProvider'
+import { Context } from '../Context/ContextProvider'
 
 // Helper Functions
 import { searching } from '../_helperFunctions'
 
 export default function Search() {
   // State Context
-  const { searchState, setSearchState } = React.useContext(SearchContext)
+  const { state, dispatch } = React.useContext(Context)
+
+  // Helper Variables
+  const searchState = state.searchState
 
   // Render
   return (
@@ -62,7 +65,7 @@ export default function Search() {
                           <Link
                             to='/search'
                             onClick={(e) =>
-                              setSearchState({
+                              dispatch.setSearchState({
                                 ...searchState,
                                 searchValue: e.target.text,
                               })

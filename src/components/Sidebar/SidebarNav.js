@@ -1,18 +1,21 @@
 import React from 'react'
 
-// Helper Libraries
-import { groupBy } from 'lodash'
+// Style
+import './_sidebarNav.scss'
 
-// DATA
-import { posts_API } from '../../API/emulate_API'
+// Lodash
+import { groupBy } from 'lodash'
 
 // Router
 import { NavLink } from 'react-router-dom'
 
+// API
+import { posts_API } from '../../API/emulate_API'
+
 // Context
 import { Context } from '../../Context/ContextProvider'
 
-export default function Nav() {
+export default function SidebarNav() {
   // Context
   const { state, dispatch } = React.useContext(Context)
 
@@ -21,28 +24,27 @@ export default function Nav() {
     (str) => str !== ''
   )
 
-  // Render
   return (
-    <nav className='header__nav nav-header'>
-      <ul className='nav-header__list'>
-        <li className='nav-header__item'>
-          <NavLink to='/' className='nav-header__link'>
+    <nav className='sidebar__nav nav-sidebar'>
+      <ul className='nav-sidebar__list'>
+        <li className='nav-sidebar__item'>
+          <NavLink to='/' className='nav-sidebar__link'>
             Главная
           </NavLink>
         </li>
         <li
-          className={`nav-header__item${
-            posts_API.length > 0 && ' item-header-nav'
+          className={`nav-sidebar__item${
+            posts_API.length > 0 && ' item-sidebar-nav'
           }`}
         >
-          <NavLink to='/search' className='nav-header__link'>
+          <NavLink to='/search' className='nav-sidebar__link'>
             Статьи
           </NavLink>
           {submenuTags.length > 0 && (
-            <div className='item-header-nav__submenu submenu-nav-header'>
-              <ul className='submenu-nav-header__list'>
+            <div className='item-sidebar-nav__submenu submenu-nav-sidebar'>
+              <ul className='submenu-nav-sidebar__list'>
                 {submenuTags.map((tag) => (
-                  <li key={tag} className='submenu-nav-header__item'>
+                  <li key={tag} className='submenu-nav-sidebar__item'>
                     <NavLink
                       to='/search'
                       onClick={(e) =>
@@ -51,7 +53,7 @@ export default function Nav() {
                           searchValue: e.target.text,
                         })
                       }
-                      className='submenu-nav-header__link'
+                      className='submenu-nav-sidebar__link'
                     >
                       {tag}
                     </NavLink>
@@ -61,14 +63,19 @@ export default function Nav() {
             </div>
           )}
         </li>
-        <li className='nav-header__item'>
-          <NavLink to='/' className='nav-header__link'>
+        <li className='nav-sidebar__item'>
+          <NavLink to='/' className='nav-sidebar__link'>
             Обо мне
           </NavLink>
         </li>
-        <li className='nav-header__item'>
-          <NavLink to='/' className='nav-header__link'>
+        <li className='nav-sidebar__item'>
+          <NavLink to='/' className='nav-sidebar__link'>
             Реклама
+          </NavLink>
+        </li>
+        <li className='nav-sidebar__item'>
+          <NavLink to='/profile' className='nav-sidebar__link'>
+            Профиль
           </NavLink>
         </li>
       </ul>

@@ -7,7 +7,7 @@ import { posts_API } from '../../API/emulate_API'
 import { withRouter, Link } from 'react-router-dom'
 
 // Context
-import { SearchContext } from '../../Context/ContextProvider'
+import { Context } from '../../Context/ContextProvider'
 
 // Helper Functions
 import { searching } from '../../_helperFunctions'
@@ -15,16 +15,19 @@ import { searching } from '../../_helperFunctions'
 export default React.memo(
   withRouter(function FormSearch({ history }) {
     // Refs
-    const search = React.useRef(null)
+    const refSearch = React.useRef(null)
 
     // State
     const [isFocused, setIsFocused] = React.useState(false)
 
     // State Context
-    const { searchState, setSearchState } = React.useContext(SearchContext)
+    const { state, dispatch } = React.useContext(Context)
+
+    // Helper Variables
+    const setSearchState = dispatch.setSearchState
+    const searchState = state.searchState
 
     // Functions
-
     const handleChange = (event) => {
       const result = posts_API.findIndex((el) => {
         if (el.title !== '') {
@@ -50,8 +53,8 @@ export default React.memo(
     const handlerSubmit = (event) => {
       event.preventDefault()
       history.push('/search')
-      search.current.blur()
-      search.current.value = ''
+      refSearch.current.blur()
+      refSearch.current.value = ''
     }
 
     // Render
@@ -62,7 +65,7 @@ export default React.memo(
         onSubmit={(event) => handlerSubmit(event)}
       >
         <input
-          ref={search}
+          ref={refSearch}
           type='text'
           className='form-header__search'
           placeholder='Поиск по блогу'
@@ -93,7 +96,7 @@ export default React.memo(
                       <Link
                         to={`/post${post.id}`}
                         className='submenu-form-header__link'
-                        onClick={() => (search.current.value = '')}
+                        onClick={() => (refSearch.current.value = '')}
                       >
                         {post.title}
                       </Link>

@@ -1,17 +1,17 @@
 .sidebar {
-  // position: fixed;
-  // top: 0;
-  // left: 0;
-  // flex: 0 0 400px;
-  flex-grow: 0;
-  flex-shrink: 0;
-  @include adaptive-value('flex-basis', 400, 250, 0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  width: adaptive-value(400, 300);
   height: 100vh;
+
   background-color: $secondary_color;
   box-shadow: 5px 0 15px rgba($bxs_color, 0.1);
 
   @media (max-width: $md2 + px) {
-    display: none;
+    transform: translate(-100%, 45px);
   }
 
   &__inner {

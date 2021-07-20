@@ -29,8 +29,8 @@ export default function App() {
       <div className='app__inner'>
         <Router>
           <Sidebar />
+          <Header />
           <main className='app-content'>
-            <Header />
             <div className='app-content__inner _container'>
               <Switch>
                 <Suspense fallback={<Preloader />}>

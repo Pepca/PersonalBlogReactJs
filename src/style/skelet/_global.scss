@@ -2,27 +2,34 @@ body {
   @include font($defaultFontFamily);
   background-color: $primary_color;
   color: $white;
+
+  &._lock {
+    overflow: hidden;
+  }
 }
 
 .app {
   width: 100%;
 
-  max-height: 100vh;
-  overflow: hidden;
-
   &__inner {
     width: 100%;
-
-    display: flex;
   }
 
   &-content {
-    position: relative;
-    width: 100%;
-    height: calc(100vh - 45px);
-    margin: 45px 0 0;
-    padding-top: adaptive-value(60, 30);
-    overflow: hidden auto;
+    width: calc(100% - calc(300px + 100 * ((100vw - 320px) / 1600)));
+
+    margin-left: auto;
+    padding: adaptive-value(90, 60) 0 adaptive-value(50, 30);
+
+    @media (max-width: $md2 + px) {
+      width: 100%;
+    }
+
+    &__inner {
+      position: relative;
+
+      min-height: 100vh;
+    }
   }
 }
 

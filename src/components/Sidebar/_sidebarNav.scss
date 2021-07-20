@@ -1,0 +1,47 @@
+@import '../../style/variables';
+
+.nav-sidebar {
+  width: 100%;
+
+  padding: 0 30px;
+
+  text-align: left;
+
+  margin-bottom: 30px;
+
+  font-weight: 300;
+
+  &__link {
+    display: block;
+
+    font-size: 16px;
+
+    padding: 12.5px 0;
+
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: $secondary_blue;
+    }
+  }
+}
+
+.submenu-nav-sidebar {
+  &__list {
+    padding-left: 17px;
+  }
+
+  &__link {
+    display: block;
+
+    font-size: 15px;
+
+    padding: 10px 0;
+
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: $secondary_blue;
+    }
+  }
+}

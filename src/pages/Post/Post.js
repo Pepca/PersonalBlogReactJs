@@ -17,14 +17,14 @@ import Share from '../../components/Popup/Share'
 import Player from '../../components/Player/Player'
 
 // Context
-import { SearchContext } from '../../Context/ContextProvider'
+import { Context } from '../../Context/ContextProvider'
 
 export default React.memo(function Post({ match, history }) {
   // State
   const [isOpen, setIsOpen] = React.useState(false)
 
   // State Context
-  const { searchState, setSearchState } = React.useContext(SearchContext)
+  const { state, dispatch } = React.useContext(Context)
 
   // Functions
   const post = posts_API.find((el) => el.id === parseInt(match.params.id))
@@ -65,7 +65,10 @@ export default React.memo(function Post({ match, history }) {
               <NavLink
                 to='/search'
                 onClick={(e) =>
-                  setSearchState({ ...searchState, searchValue: e.target.text })
+                  dispatch.setSearchState({
+                    ...state.searchState,
+                    searchValue: e.target.text,
+                  })
                 }
                 className='info-post-header__tag'
               >
@@ -110,10 +113,6 @@ export default React.memo(function Post({ match, history }) {
                   )
               )}
             </ul>
-          </div>
-          <div className='post-comments'>
-            <h3 className='post-comments__title post-title'>Обсуждение</h3>
-            <span style={{ fontSize: '15px' }}>Maintenance...</span>
           </div>
         </div>
       </div>
