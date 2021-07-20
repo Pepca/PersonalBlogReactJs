@@ -53,6 +53,12 @@ export default function SidebarNav() {
                           searchValue: e.target.text,
                         })
                       }
+                      onTouchEnd={(e) =>
+                        dispatch.setSearchState({
+                          ...state.searchState,
+                          searchValue: e.target.text,
+                        })
+                      }
                       className='submenu-nav-sidebar__link'
                     >
                       {tag}

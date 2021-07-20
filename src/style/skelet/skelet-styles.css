@@ -157,7 +157,7 @@ button {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 2000;
   width: calc( 300px + 100 * ((100vw - 320px) / 1600));
   height: 100vh;
   background-color: #202020;
@@ -172,8 +172,10 @@ button {
     align-items: center;
     text-align: center; }
   .sidebar-picture {
-    width: 100%;
-    min-height: 240px; }
+    width: 100%; }
+    @media (min-width: 991.98px) {
+      .sidebar-picture {
+        min-height: calc( 180px + 60 * ((100vw - 320px) / 1600)); } }
   .sidebar-description {
     padding: 0 calc( 13px + 17 * ((100vw - 320px) / 1600)); }
     ._skelet-app .sidebar-description p {
@@ -191,8 +193,11 @@ button {
 
 .head-sidebar {
   width: 100%;
-  padding: 0 calc( 13px + 17 * ((100vw - 320px) / 1600));
-  margin-top: calc( -150px + 85 * ((100vw - 320px) / 1600)); }
+  padding: 0 calc( 20px + 10 * ((100vw - 320px) / 1600));
+  margin-top: calc( -20px + -45 * ((100vw - 320px) / 1600)); }
+  @media (max-width: 991.98px) {
+    .head-sidebar {
+      padding-right: 0; } }
   .head-sidebar::after {
     content: '';
     display: block;
@@ -201,13 +206,16 @@ button {
     margin: calc( 10px + 25 * ((100vw - 320px) / 1600)) 0;
     background-color: #1c1c1c; }
   .head-sidebar__avatar {
-    max-width: calc( 116px + 34 * ((100vw - 320px) / 1600));
-    max-height: calc( 116px + 34 * ((100vw - 320px) / 1600));
-    min-width: calc( 116px + 34 * ((100vw - 320px) / 1600));
-    min-height: calc( 116px + 34 * ((100vw - 320px) / 1600));
+    max-width: calc( 65px + 85 * ((100vw - 320px) / 1600));
+    max-height: calc( 65px + 85 * ((100vw - 320px) / 1600));
+    min-width: calc( 65px + 85 * ((100vw - 320px) / 1600));
+    min-height: calc( 65px + 85 * ((100vw - 320px) / 1600));
     border-radius: 50%;
     background-color: #333333;
     margin: 0 auto 19px; }
+    @media (max-width: 991.98px) {
+      .head-sidebar__avatar {
+        margin: 0; } }
 
 ._skelet-app .info-head-sidebar {
   margin: 0 auto 30px;
@@ -230,7 +238,6 @@ button {
   border-radius: 25px; }
 
 .header {
-  /* Header variables */
   position: fixed;
   top: 0;
   right: 0;

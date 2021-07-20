@@ -18,11 +18,27 @@ import SendMessage from '../../components/Popup/SendMessage'
 import SidebarNav from './SidebarNav'
 
 export default function Sidebar() {
+  // Ref
+  const refSidebar = React.useRef(null)
+
   // State
   const [isOpen, setIsOpen] = React.useState(false)
 
   // Context
   const { state, dispatch } = React.useContext(Context)
+
+  // Hook
+  React.useEffect(() => {
+    refSidebar.current.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () =>
+        dispatch.setSidebarIsOpen(() => false)
+      )
+
+      link.addEventListener('touchend', () =>
+        dispatch.setSidebarIsOpen(() => false)
+      )
+    })
+  }, [refSidebar, dispatch])
 
   // Render
   return (
@@ -39,6 +55,7 @@ export default function Sidebar() {
         ></div>
       )}
       <aside
+        ref={refSidebar}
         className={`sidebar${state.sidebarIsOpen ? ' _sidebarIsOpen' : ''}`}
       >
         <div className='sidebar__inner'>
@@ -70,7 +87,14 @@ export default function Sidebar() {
             <div className='controls-sidebar__item'>
               <button
                 className='controls-sidebar__btn blue-btn'
-                onClick={() => setIsOpen(() => true)}
+                onClick={() => {
+                  setIsOpen(() => true)
+                  dispatch.setSidebarIsOpen(() => false)
+                }}
+                onTouchEnd={() => {
+                  setIsOpen(() => true)
+                  dispatch.setSidebarIsOpen(() => false)
+                }}
                 type='button'
               >
                 Написать мне

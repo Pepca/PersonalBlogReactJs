@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 2000;
 
   width: adaptive-value(400, 300);
   height: 100vh;
@@ -24,7 +24,10 @@
 
   &-picture {
     width: 100%;
-    min-height: 240px;
+
+    @media (min-width: $md2 + px) {
+      min-height: adaptive-value(240, 180);
+    }
   }
 
   &-description {
@@ -58,8 +61,12 @@
 .head-sidebar {
   width: 100%;
 
-  padding: 0 adaptive-value(30, 13);
-  margin-top: adaptive-value(-65, -150);
+  padding: 0 adaptive-value(30, 20);
+  margin-top: adaptive-value(-65, -20);
+
+  @media (max-width: $md2 + px) {
+    padding-right: 0;
+  }
 
   &::after {
     content: '';
@@ -74,16 +81,20 @@
   }
 
   &__avatar {
-    max-width: adaptive-value(150, 116);
-    max-height: adaptive-value(150, 116);
-    min-width: adaptive-value(150, 116);
-    min-height: adaptive-value(150, 116);
+    max-width: adaptive-value(150, 65);
+    max-height: adaptive-value(150, 65);
+    min-width: adaptive-value(150, 65);
+    min-height: adaptive-value(150, 65);
 
     border-radius: 50%;
 
     background-color: $placeholder_color;
 
     margin: 0 auto 19px;
+
+    @media (max-width: $md2 + px) {
+      margin: 0;
+    }
   }
 }
 

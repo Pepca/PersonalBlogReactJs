@@ -1,7 +1,6 @@
-.header {
-  /* Header variables */
-  $bg-color: #0d0d0d;
+@import '../variables';
 
+.header {
   position: fixed;
   top: 0;
   right: 0;
@@ -10,7 +9,7 @@
   width: calc(100% - calc(300px + 100 * ((100vw - 320px) / 1600)));
   height: 45px;
 
-  background-color: $bg-color;
+  background-color: $header_bg_color;
 
   box-shadow: 0 5px 22px rgba($black, 0.25);
 
