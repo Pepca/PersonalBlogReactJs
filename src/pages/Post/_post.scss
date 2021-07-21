@@ -1,4 +1,5 @@
 @import '../../style/variables';
+@import '../../style/mixin';
 
 .post {
   background-color: $secondary_color;
@@ -12,11 +13,11 @@
     justify-content: space-between;
     align-items: center;
 
-    margin-bottom: 20px;
+    margin-bottom: adaptive-value(20, 15);
 
     > a,
     button {
-      font-size: 15px;
+      font-size: adaptive-value(15, 13);
       color: rgba($white, 0.6);
 
       transition: all 0.3s ease;
@@ -32,7 +33,7 @@
       position: relative;
       background-color: transparent;
 
-      padding-right: 32px;
+      padding-right: adaptive-value(32, 27);
 
       &:after {
         content: '';
@@ -41,8 +42,8 @@
         right: 0;
         top: 50%;
 
-        width: 25px;
-        height: 25px;
+        width: adaptive-value(25, 20);
+        height: adaptive-value(25, 20);
 
         background: url('../../images/Post/share.svg') center no-repeat;
         background-size: cover;
@@ -53,30 +54,30 @@
   }
 
   &__inner {
-    padding: 20px 30px 42px;
+    padding: adaptive-value(20, 15) adaptive-value(30, 15) adaptive-value(42, 0);
   }
 
   &-title {
     font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: adaptive-value(16, 14);
+    line-height: adaptive-value(19, 17);
 
-    margin-bottom: 19px;
+    margin-bottom: adaptive-value(19, 17);
   }
 
   &-header {
-    margin-bottom: 30px;
+    margin-bottom: adaptive-value(30, 15);
 
     &__title {
       font-weight: 500;
 
-      margin-bottom: 15px;
+      margin-bottom: adaptive-value(15, 10);
     }
   }
 
   &-text {
     p {
-      margin: 25px 0;
+      margin: adaptive-value(25, 20) 0;
     }
   }
 
@@ -92,7 +93,7 @@
 
   &-picture {
     width: 100%;
-    min-height: 340px;
+    min-height: adaptive-value(340, 98);
 
     background-color: $gray;
 
@@ -118,11 +119,7 @@
     }
 
     &:before {
-      margin: 20px 0 40px;
-    }
-
-    &:after {
-      margin: 40px 0;
+      margin: adaptive-value(20, 10) 0 adaptive-value(40, 25);
     }
 
     &__list {
@@ -133,7 +130,7 @@
     &__item {
       display: block;
 
-      max-width: 290px;
+      max-width: adaptive-value(290, 214);
 
       overflow: hidden;
 
@@ -144,7 +141,7 @@
       }
 
       &:nth-child(-n + 3) {
-        margin-bottom: 24px;
+        margin-bottom: adaptive-value(24, 15);
       }
     }
 
@@ -153,11 +150,11 @@
 
       white-space: nowrap;
 
-      font-size: 17px;
+      font-size: adaptive-value(17, 13);
 
       color: $yellow;
 
-      margin-bottom: 8px;
+      margin-bottom: adaptive-value(8, 5);
 
       &:hover {
         text-decoration: underline;
@@ -178,7 +175,7 @@
 
       border-radius: 50%;
 
-      margin: 0 15px 1px;
+      margin: 0 adaptive-value(15, 10) 1px;
 
       background-color: $elemnt_color;
     }

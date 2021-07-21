@@ -1,23 +1,32 @@
 @import '../../style/variables';
+@import '../../style/mixin';
 
 .profile {
   &__inner {
-    margin-top: 80px;
+    margin-top: adaptive-value(80, 25);
   }
 }
 
 .form-profile {
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 }
 
 .data-form-profile {
   flex: 0 1 50%;
 
+  @media (max-width: 600px) {
+    margin-bottom: 40px;
+  }
+
   &__input {
     width: 100%;
 
-    margin-bottom: 35px;
+    margin-bottom: adaptive-value(35, 25);
   }
 }
 
@@ -31,20 +40,18 @@
   cursor: pointer;
 
   &__container {
-    width: 250px;
-    height: 250px;
+    width: adaptive-value(250, 200);
+    height: adaptive-value(250, 200);
 
     background-color: $gray;
 
     box-shadow: 0 5px 15px rgba($black, 0.25);
 
-    margin-bottom: 25px;
+    margin-top: 15px;
   }
 
   &__btn {
     font-size: 18px;
-
-    text-decoration: underline;
 
     color: $secondary_blue;
   }

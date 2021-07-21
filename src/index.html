@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="ie=edge" />
     <link rel="shortcut icon" href="favicon.png" type="image/png" />
-    <link rel="stylesheet" href="skelet-HTML/skelet-styles.css" />
+    <!-- <link rel="stylesheet" href="skelet-HTML/skelet-styles.css" /> -->
     <%= htmlWebpackPlugin.tags.headTags %>
     <title>Pepe personal blog</title>
   </head>
@@ -31,29 +31,25 @@
         <main class="app-content">
           <header class="header">
             <div class="header__inner">
-              <div class="header__right">
-                <div class="header-burger">
-                  <div class="header-burger__inner">
-                    <span></span>
-                  </div>
+              <div class="header-burger">
+                <div class="header-burger__inner">
+                  <span></span>
                 </div>
-                <nav class="nav-header">
-                  <ul class="nav-header__list">
-                    <li class="nav-header__item"></li>
-                    <li class="nav-header__item"></li>
-                    <li class="nav-header__item"></li>
-                    <li class="nav-header__item"></li>
-                  </ul>
-                </nav>
               </div>
-              <div class="header__left">
-                <nav class="nav-header">
-                  <ul class="nav-header__list">
+              <nav class="nav-header">
+                <ul class="nav-header__list list-nav-header">
+                  <div class="list-nav-header__left">
                     <li class="nav-header__item"></li>
-                  </ul>
-                </nav>
-                <form action="/" class="form-header"></form>
-              </div>
+                    <li class="nav-header__item"></li>
+                    <li class="nav-header__item"></li>
+                    <li class="nav-header__item"></li>
+                  </div>
+                  <div class="list-nav-header__right">
+                    <li class="nav-header__item"></li>
+                  </div>
+                </ul>
+              </nav>
+              <form action="/" class="form-header"></form>
             </div>
           </header>
           <div class="app-content__inner _container">

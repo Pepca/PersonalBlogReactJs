@@ -58,8 +58,8 @@ export default function Profile() {
               htmlFor='user_avatar'
               className='avatar-form-profile__label label-form-avatar'
             >
+              <span className='label-form-avatar__btn'>выбрать аватар:</span>
               <div className='label-form-avatar__container'></div>
-              <span className='label-form-avatar__btn'>выбрать аватар</span>
             </label>
           </div>
         </form>

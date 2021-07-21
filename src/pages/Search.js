@@ -28,7 +28,9 @@ export default function Search() {
   // Render
   return (
     <section className='search'>
-      <h1 className='search-title title-route'>{`Результаты поиска “${searchState.searchValue}”`}</h1>
+      {searchState.searchValue !== '' && (
+        <h1 className='search-title title-route'>{`Результаты поиска: "${searchState.searchValue}"`}</h1>
+      )}
       <div className='search__inner'>
         {!searchState.isFound && (
           <h1 style={{ fontSize: '17px' }}>Ничего не надено...</h1>

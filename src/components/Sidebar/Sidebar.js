@@ -9,6 +9,9 @@ import bgPicture from '../../images/Sidebar/bgPicture.jpg'
 // Router
 import { Link } from 'react-router-dom'
 
+// Helper Functions
+import { openPopup } from '../../_helperFunctions'
+
 // Context
 import { Context } from '../../Context/ContextProvider'
 
@@ -31,10 +34,6 @@ export default function Sidebar() {
   React.useEffect(() => {
     refSidebar.current.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () =>
-        dispatch.setSidebarIsOpen(() => false)
-      )
-
-      link.addEventListener('touchend', () =>
         dispatch.setSidebarIsOpen(() => false)
       )
     })
@@ -88,11 +87,7 @@ export default function Sidebar() {
               <button
                 className='controls-sidebar__btn blue-btn'
                 onClick={() => {
-                  setIsOpen(() => true)
-                  dispatch.setSidebarIsOpen(() => false)
-                }}
-                onTouchEnd={() => {
-                  setIsOpen(() => true)
+                  openPopup(setIsOpen)
                   dispatch.setSidebarIsOpen(() => false)
                 }}
                 type='button'
