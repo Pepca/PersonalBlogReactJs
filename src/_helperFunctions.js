@@ -1,6 +1,5 @@
 export const transformDateTime = (strDate) => {
-  const dateTime = strDate.split('.').reverse().join('-')
-  return dateTime
+  return strDate.split('.').reverse().join('-')
 }
 
 export const openPopup = (setState) => {
@@ -17,16 +16,16 @@ export const openPopup = (setState) => {
 
 export const closePopup = (setState) => {
   document.body.classList.remove('_lock')
-  document.body.style.paddingRight = 0
+  document.body.style.paddingRight = '0'
   document.querySelector('#fixed-element').style.paddingRight = 0
 
   setState(() => false)
 }
 
-export const searching = (first, second, sougth) => {
+export const searching = (first, second, sought) => {
   return (
-    first.toUpperCase().search(sougth.toUpperCase().trim()) !== -1 ||
-    second.toUpperCase().search(sougth.toUpperCase().trim()) !== -1
+    first.toUpperCase().search(sought.toUpperCase().trim()) !== -1 ||
+    second.toUpperCase().search(sought.toUpperCase().trim()) !== -1
   )
 }
 

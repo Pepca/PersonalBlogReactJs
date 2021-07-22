@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 // Style
 import './_player.scss'
 
-// SecFuncs
+// Helper Functions
 import { formatTime } from '../../_helperFunctions'
 
 // Components
@@ -74,7 +74,7 @@ export default function Player({ className, src }) {
 
   const bufferization = (event) => {
     const $this = event.target
-    for (var i = 0; i < $this.buffered.length; i++) {
+    for (let i = 0; i < $this.buffered.length; i++) {
       if (
         $this.buffered.start($this.buffered.length - 1 - i) < $this.currentTime
       ) {
@@ -152,7 +152,7 @@ export default function Player({ className, src }) {
           onDoubleClick={() => toggleFullscreen()}
           onClick={() => {
             if (!isVideoLoading) isEnded ? videoPlay() : togglePlay()
-            localStorage.setItem('prev-state-isPlay', isPlay)
+            localStorage.setItem('prev-state-isPlay', `${isPlay}`)
           }}
           // onLoadedMetadata={(event) => {}}
           onLoadedData={() => {
@@ -212,9 +212,9 @@ export default function Player({ className, src }) {
         <div className='player__controls'>
           <div className='player__controls-right'>
             <button
-              className='player-button pause-play-contorl'
+              className='player-button pause-play-control'
               onClick={() => {
-                localStorage.setItem('prev-state-isPlay', isPlay)
+                localStorage.setItem('prev-state-isPlay', `${isPlay}`)
                 if (!isVideoLoading) isEnded ? videoPlay() : togglePlay()
               }}
             >
@@ -243,12 +243,12 @@ export default function Player({ className, src }) {
 
             <VolumeSlider refVideo={refVideo} />
 
-            <div className='player-duration' ref={refPlayerDuration}></div>
+            <div className='player-duration' ref={refPlayerDuration}/>
           </div>
           <div className='player__controls-left'>
             <button
               className='player-button fullscreen-control'
-              ttile='fullscreen change player'
+              title='fullscreen change player'
               onClick={(event) => {
                 event.currentTarget.blur()
                 toggleFullscreen()

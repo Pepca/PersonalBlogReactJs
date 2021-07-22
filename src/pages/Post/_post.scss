@@ -163,6 +163,24 @@
   }
 }
 
+.player-post {
+  position: relative;
+
+  width: 100%;
+  min-height: adaptive-value(340, 140);
+
+  background-color: $secondary_color;
+
+  &__video {
+    video {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+  }
+}
+
 .info-post-header {
   &__date {
     &:not(:last-child):after {

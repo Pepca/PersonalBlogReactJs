@@ -3,6 +3,9 @@ import React, { Suspense, lazy } from 'react'
 // Styles
 import './style/index.scss'
 
+// Loadable
+import loadable from '@loadable/component'
+
 // Router
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
@@ -18,10 +21,10 @@ const Profile = lazy(() => import('./pages/Profile/Profile'))
 
 // Components
 import Preloader from './components/Preloader/Preloader'
-import Sidebar from './components/Sidebar/Sidebar'
-import Header from './components/Header/Header'
-// const Sidebar = loadable(() => import('./components/Sidebar/Sidebar'))
-// const Header = loadable(() => import('./components/Header/Header'))
+// import Sidebar from './components/Sidebar/Sidebar'
+// import Header from './components/Header/Header'
+const Sidebar = loadable(() => import('./components/Sidebar/Sidebar'))
+const Header = loadable(() => import('./components/Header/Header'))
 
 export default function App() {
   return (

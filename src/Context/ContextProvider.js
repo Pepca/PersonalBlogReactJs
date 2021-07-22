@@ -1,7 +1,7 @@
 import React from 'react'
 
 // createContext
-export const Context = React.createContext()
+export const Context = React.createContext(null)
 
 // Provider
 export function ContextProvider({ children }) {
@@ -41,7 +41,7 @@ export function ContextProvider({ children }) {
   React.useEffect(() => {
     window.addEventListener('resize', resizeWindow)
 
-    document.body.classList.toggle('_lock', sidebarIsOpen)
+    document.body.classList.toggle('_sidebarIsOpen', sidebarIsOpen)
 
     return () => window.removeEventListener('resize', resizeWindow)
   }, [resizeWindow, sidebarIsOpen])

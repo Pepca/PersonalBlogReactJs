@@ -29,16 +29,16 @@ export default React.memo(function Timeline({
     if (pixels > widthTimeLine) pixels = widthTimeLine
     if (pixels <= 0) pixels = 0
 
-    const percensts = pixels / widthTimeLine
+    const percents = pixels / widthTimeLine
 
     return {
       getPixels: () => pixels,
-      getPercents: () => percensts,
+      getPercents: () => percents,
     }
   }
 
   const positionX = (event, type) => {
-    if (type === 'devided')
+    if (type === 'divided')
       return Math.ceil(
         calcPositionX(event).getPixels() - refHandler.current.offsetWidth / 2
       )
@@ -69,8 +69,8 @@ export default React.memo(function Timeline({
 
   const mouseMoveDragging = (event) => {
     if (isDragging) {
-      refHandler.current.style = `left: ${positionX(event, 'devided')}px`
-      refCurrentLine.current.style.width = `${positionX(event, 'devided')}px`
+      refHandler.current.style = `left: ${positionX(event, 'divided')}px`
+      refCurrentLine.current.style.width = `${positionX(event, 'divided')}px`
     }
   }
 

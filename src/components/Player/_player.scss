@@ -111,7 +111,7 @@
   height: 100px;
 }
 
-.pause-play-contorl {
+.pause-play-control {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -242,7 +242,7 @@
   &__line {
     position: absolute;
     top: 50%;
-    left: 0px;
+    left: 0;
 
     height: 3px;
 
@@ -293,7 +293,6 @@
 
     font-size: 13px;
     -moz-user-select: none;
-    -khtml-user-select: none;
     user-select: none;
   }
 }

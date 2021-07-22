@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
 
 export default function VolumeSlider({ refVideo }) {
   // Reserved const
@@ -146,9 +146,7 @@ export default function VolumeSlider({ refVideo }) {
     const volumeSlider = document.querySelector('.volume-slider')
     const handler = document.querySelector('.volume-slider-handler')
 
-    const result = volumeSlider.offsetWidth - handler.offsetWidth
-
-    widthVolumeSlider.current = result
+    widthVolumeSlider.current = volumeSlider.offsetWidth - handler.offsetWidth
   }, [refVolumeSlider, refHandler])
   // /Calc Width Volume Slider
 
@@ -162,7 +160,7 @@ export default function VolumeSlider({ refVideo }) {
     // Inits with first render
     setVolumeVideo()
 
-    // Clenup
+    // CleanUp
     return () => document.removeEventListener('mouseup', cancelDragging)
   }, [setVolumeVideo])
 
@@ -179,7 +177,7 @@ export default function VolumeSlider({ refVideo }) {
         }}
         onMouseMove={(event) => isDragging && onSliderMouseEvents(event)}
       >
-        <div className='volume-slider-handler' ref={refHandler}></div>
+        <div className='volume-slider-handler' ref={refHandler}/>
       </div>
     </div>
   )

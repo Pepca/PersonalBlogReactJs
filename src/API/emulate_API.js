@@ -6,6 +6,7 @@ import Video1 from '../videos/video1.mp4'
 import poster_video1 from '../images/Posts/video1.jpg'
 
 // STORIES
+// Media
 import Story1 from '../images/Stories/story01.png'
 import Story2 from '../images/Stories/story02.png'
 import Story3 from '../images/Stories/story03.png'

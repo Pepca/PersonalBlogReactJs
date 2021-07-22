@@ -1,102 +1,102 @@
-import React from 'react'
+import React from "react";
 
 // DATA
-import { posts_API } from '../../API/emulate_API'
+import { posts_API } from "../../API/emulate_API";
 
 // Router
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link } from "react-router-dom";
 
 // Context
-import { Context } from '../../Context/ContextProvider'
+import { Context } from "../../Context/ContextProvider";
 
 // Helper Functions
-import { searching } from '../../_helperFunctions'
+import { searching } from "../../_helperFunctions";
 
 export default React.memo(
   withRouter(function FormSearch({ history }) {
     // Refs
-    const refSearch = React.useRef(null)
+    const refSearch = React.useRef(null);
 
     // State
-    const [isFocused, setIsFocused] = React.useState(false)
+    const [isFocused, setIsFocused] = React.useState(false);
 
     // State Context
-    const { state, dispatch } = React.useContext(Context)
+    const { state, dispatch } = React.useContext(Context);
 
     // Helper Variables
-    const setSearchState = dispatch.setSearchState
-    const searchState = state.searchState
+    const setSearchState = dispatch.setSearchState;
+    const searchState = state.searchState;
 
     // Functions
     const handleChange = (event) => {
       const result = posts_API.findIndex((el) => {
-        if (el.title !== '') {
-          return searching(el.title, el.tag, event.target.value)
+        if (el.title !== "") {
+          return searching(el.title, el.tag, event.target.value);
         }
-      })
+      });
 
       if (result !== -1) {
-        setSearchState((searchState.isFound = true))
+        setSearchState((searchState.isFound = true));
       } else {
-        setSearchState((searchState.isFound = false))
+        setSearchState((searchState.isFound = false));
       }
 
-      setSearchState({ ...searchState, searchValue: event.target.value })
+      setSearchState({ ...searchState, searchValue: event.target.value });
 
-      if (event.target.value !== '') {
-        setIsFocused(() => true)
+      if (event.target.value !== "") {
+        setIsFocused(() => true);
       } else {
-        setIsFocused(() => false)
+        setIsFocused(() => false);
       }
-    }
+    };
 
     const handlerSubmit = (event) => {
-      event.preventDefault()
-      history.push('/search')
-      refSearch.current.blur()
-      refSearch.current.value = ''
-    }
+      event.preventDefault();
+      history.push("/search");
+      refSearch.current.blur();
+      refSearch.current.value = "";
+    };
 
     // Render
     return (
       <form
-        action='/'
-        className='header__form form-header'
+        action="/"
+        className="header__form form-header"
         onSubmit={(event) => handlerSubmit(event)}
       >
         <input
           ref={refSearch}
-          type='text'
-          className='form-header__search'
-          placeholder='Поиск по блогу'
+          type="text"
+          className="form-header__search"
+          placeholder="Поиск по блогу"
           onChange={(event) => handleChange(event)}
           onFocus={(event) =>
-            event.target.value !== '' && setIsFocused(() => true)
+            event.target.value !== "" && setIsFocused(() => true)
           }
           onBlur={() => setIsFocused(() => false)}
         />
-        {history.location.pathname !== '/search' && posts_API.length > 0 && (
+        {history.location.pathname !== "/search" && posts_API.length > 0 && (
           <div
             className={`form-header__submenu submenu-form-header${
-              isFocused ? ' submenu-form-header-show' : ''
+              isFocused ? " submenu-form-header-show" : ""
             }`}
           >
-            <ul className='submenu-form-header__list'>
+            <ul className="submenu-form-header__list">
               {!searchState.isFound && (
-                <li className='submenu-form-header__item error'>
+                <li className="submenu-form-header__item error">
                   Ничего не найдено...
                 </li>
               )}
               {posts_API.map(
                 (post) =>
-                  searchState.searchValue.trim().toUpperCase() !== '' &&
+                  searchState.searchValue.trim().toUpperCase() !== "" &&
                   searching(post.title, post.tag, searchState.searchValue) &&
                   post.title && (
-                    <li key={post.id} className='submenu-form-header__item'>
+                    <li key={post.id} className="submenu-form-header__item">
                       <Link
                         to={`/post${post.id}`}
-                        className='submenu-form-header__link'
-                        onClick={() => (refSearch.current.value = '')}
+                        className="submenu-form-header__link"
+                        onClick={() => (refSearch.current.value = "")}
                       >
                         {post.title}
                       </Link>
@@ -107,6 +107,6 @@ export default React.memo(
           </div>
         )}
       </form>
-    )
+    );
   })
-)
+);

@@ -112,7 +112,7 @@
 .controls-sidebar {
   width: 100%;
 
-  padding: 0 30px;
+  padding: 0 adaptive-value(30, 25);
   // padding: 0 adaptive-value(30, 31);
 
   display: flex;

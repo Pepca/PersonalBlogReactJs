@@ -18,7 +18,6 @@ import {
 
 // Components
 import Share from '../../components/Popup/Share'
-import Player from '../../components/Player/Player'
 
 // Context
 import { Context } from '../../Context/ContextProvider'
@@ -88,7 +87,11 @@ export default React.memo(function Post({ match, history }) {
                 <img src={post.media.src} alt={post.media.alt} />
               </div>
             ) : (
-              <Player className='post-player' src={post.media.src} />
+              <div className='post__player player-post'>
+                <div className='player-post__video'>
+                  <video src={post.media.src} controls></video>
+                </div>
+              </div>
             )}
             {post.text !== '' && <p>{post.text}</p>}
           </div>
