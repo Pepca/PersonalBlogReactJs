@@ -35,8 +35,8 @@
 
     ._skelet-app & {
       p {
-        width: 340px;
-        height: 120px;
+        width: adaptive-value(340, 300, $md2);
+        height: adaptive-value(120, 110, $md2);
 
         background-color: $placeholder_color;
 
@@ -99,7 +99,7 @@
 }
 
 ._skelet-app .info-head-sidebar {
-  margin: 0 auto 30px;
+  margin: 0 auto adaptive-value(30, 20, $md2);
 
   width: 240px;
   height: 60px;
@@ -121,8 +121,8 @@
 }
 
 ._skelet-app .controls-sidebar__item {
-  width: 162px;
-  height: 50px;
+  width: adaptive-value(162, 135, $md2);
+  height: adaptive-value(50, 40, $md2);
 
   background-color: $placeholder_color;
 

@@ -1,4 +1,4 @@
-import './style/skelet/skelet-styles.scss'
+// import './style/skelet/skelet-styles.scss'
 
 import React from 'react'
 import ReactDOM from 'react-dom'

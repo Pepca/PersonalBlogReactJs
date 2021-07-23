@@ -156,8 +156,10 @@
 
       margin-bottom: adaptive-value(8, 5);
 
-      &:hover {
-        text-decoration: underline;
+      @media (min-width: $md2 + px) {
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

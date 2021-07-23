@@ -40,10 +40,11 @@
 // /Adaptive mixin
 
 // Functions
-@function adaptive-value($maxValue, $minValue) {
+@function adaptive-value($maxValue, $minValue, $resolution: 320) {
   $addValue: $maxValue - $minValue;
   @return calc(
-    #{$minValue + px} + #{$addValue} * ((100vw - 320px) / #{$maxWidth - 320})
+    #{$minValue + px} + #{$addValue} *
+      ((100vw - #{$resolution + px}) / #{$maxWidth - $resolution})
   );
 }
 // /Functions

@@ -124,6 +124,12 @@
 }
 
 .nav-header {
+  flex: 0 1 100%;
+
+  @media (max-width: $md2 + px) {
+    display: none;
+  }
+
   ._skelet-app & {
     height: 100%;
   }
@@ -138,16 +144,31 @@
   }
 }
 
+.list-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__right {
+    display: flex;
+  }
+
+  &__left {
+    display: flex;
+  }
+}
+
 ._skelet-app .nav-header__item {
-  width: 80px;
+  // width: 80px;
+  width: adaptive-value(80, 70, $md2);
   height: 22.5px;
   background-color: $placeholder_color;
   border-radius: 20px;
-  margin: 0 15px;
+  margin: 0 adaptive-value(15, 10, $md2);
 }
 
 ._skelet-app .form-header {
-  width: 254px;
+  width: adaptive-value(253, 200);
   height: 100%;
   background-color: $placeholder_color;
 }

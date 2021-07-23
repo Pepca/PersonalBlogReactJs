@@ -2,7 +2,6 @@
 @import '../../style/mixin';
 
 .nav-header {
-  flex: 0 1 100%;
   &__link {
     display: block;
 
@@ -17,18 +16,6 @@
         background-color: $blue;
       }
     }
-  }
-}
-
-.list-nav-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  &__right {
-    display: flex;
-  }
-  &__left {
-    display: flex;
   }
 }
 

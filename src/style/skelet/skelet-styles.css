@@ -182,8 +182,8 @@ button {
   .sidebar-description {
     padding: 0 calc( 13px + 17 * ((100vw - 320px) / 1600)); }
     ._skelet-app .sidebar-description p {
-      width: 340px;
-      height: 120px;
+      width: calc( 300px + 40 * ((100vw - 991.98px) / 928.02));
+      height: calc( 110px + 10 * ((100vw - 991.98px) / 928.02));
       background-color: #333333;
       border-radius: 15px; }
     .sidebar-description::after {
@@ -221,7 +221,7 @@ button {
         margin: 0; } }
 
 ._skelet-app .info-head-sidebar {
-  margin: 0 auto 30px;
+  margin: 0 auto calc( 20px + 10 * ((100vw - 991.98px) / 928.02));
   width: 240px;
   height: 60px;
   background-color: #333333;
@@ -235,8 +235,8 @@ button {
   justify-content: space-between; }
 
 ._skelet-app .controls-sidebar__item {
-  width: 162px;
-  height: 50px;
+  width: calc( 135px + 27 * ((100vw - 991.98px) / 928.02));
+  height: calc( 40px + 10 * ((100vw - 991.98px) / 928.02));
   background-color: #333333;
   border-radius: 25px; }
 
@@ -312,24 +312,37 @@ button {
           bottom: 21px;
           transform: rotate(45deg); }
 
-._skelet-app .nav-header {
-  height: 100%; }
-
-.nav-header__list {
-  display: flex;
-  align-items: center; }
-  ._skelet-app .nav-header__list {
+.nav-header {
+  flex: 0 1 100%; }
+  @media (max-width: 991.98px) {
+    .nav-header {
+      display: none; } }
+  ._skelet-app .nav-header {
     height: 100%; }
+  .nav-header__list {
+    display: flex;
+    align-items: center; }
+    ._skelet-app .nav-header__list {
+      height: 100%; }
+
+.list-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .list-nav-header__right {
+    display: flex; }
+  .list-nav-header__left {
+    display: flex; }
 
 ._skelet-app .nav-header__item {
-  width: 80px;
+  width: calc( 70px + 10 * ((100vw - 991.98px) / 928.02));
   height: 22.5px;
   background-color: #333333;
   border-radius: 20px;
-  margin: 0 15px; }
+  margin: 0 calc( 10px + 5 * ((100vw - 991.98px) / 928.02)); }
 
 ._skelet-app .form-header {
-  width: 254px;
+  width: calc( 200px + 53 * ((100vw - 320px) / 1600));
   height: 100%;
   background-color: #333333; }
 
