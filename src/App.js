@@ -26,28 +26,28 @@ import Preloader from './components/Preloader/Preloader'
 const Sidebar = loadable(() => import('./components/Sidebar/Sidebar'))
 const Header = loadable(() => import('./components/Header/Header'))
 
-export default function App() {
+export default function App () {
   return (
     <ContextProvider>
       <div className='app__inner'>
         <Router>
-          <Sidebar />
-          <Header />
+          <Sidebar/>
+          <Header/>
           <main className='app-content'>
             <div className='app-content__inner _container'>
               <Switch>
-                <Suspense fallback={<Preloader />}>
-                  <Route exact path='/' render={() => <Home />} />
-                  <Route path='/works' render={() => <Works />} />
-                  <Route exact path='/search' render={() => <Search />} />
+                <Suspense fallback={<Preloader/>}>
+                  <Route exact path='/' render={() => <Home/>}/>
+                  <Route path='/works' render={() => <Works/>}/>
+                  <Route exact path='/search' render={() => <Search/>}/>
                   <Route
                     exact
                     path='/post:id'
                     render={({ match, history }) => (
-                      <Post match={match} history={history} />
+                      <Post match={match} history={history}/>
                     )}
                   />
-                  <Route path='/profile' render={() => <Profile />} />
+                  <Route path='/profile' render={() => <Profile/>}/>
                   {/* <Redirect to='/' /> */}
                 </Suspense>
               </Switch>
