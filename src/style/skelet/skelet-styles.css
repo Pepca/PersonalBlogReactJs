@@ -364,10 +364,9 @@ button {
     border-radius: 15px; }
 
 .addpost-form {
-  /* Addpost Variables */
   width: 100%;
   margin-top: calc( 20px + 20 * ((100vw - 320px) / 1600));
-  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.45); }
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.45); }
   ._skelet-app .addpost-form {
     border-radius: 15px;
     height: 90px;
@@ -390,10 +389,7 @@ button {
     ._skelet-app .post__picture {
       height: calc( 330px + 70 * ((100vw - 320px) / 1600)); }
   .post__body {
-    padding-top: calc( 13px + 12 * ((100vw - 320px) / 1600));
-    padding-left: calc( 15px + 15 * ((100vw - 320px) / 1600));
-    padding-right: calc( 15px + 15 * ((100vw - 320px) / 1600));
-    padding-bottom: calc( 13px + 5 * ((100vw - 320px) / 1600)); }
+    padding: calc( 13px + 12 * ((100vw - 320px) / 1600)) calc( 15px + 15 * ((100vw - 320px) / 1600)) calc( 13px + 5 * ((100vw - 320px) / 1600)); }
 
 ._skelet-app .description-post {
   margin-bottom: 25px; }

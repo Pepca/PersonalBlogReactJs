@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
-  @include adaptive-value('grid-column-gap', 20, 10, 0);
+  grid-column-gap: adaptive-value(20, 10);
 }
 
 .item-stories {

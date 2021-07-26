@@ -48,7 +48,6 @@ export default function App () {
                     )}
                   />
                   <Route path='/profile' render={() => <Profile/>}/>
-                  {/* <Redirect to='/' /> */}
                 </Suspense>
               </Switch>
             </div>

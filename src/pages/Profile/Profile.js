@@ -3,7 +3,7 @@ import React from 'react'
 // Style
 import './_profile.scss'
 
-export default function Profile() {
+export default function Profile () {
   // Render
   return (
     <section className='profile'>
@@ -59,7 +59,7 @@ export default function Profile() {
               className='avatar-form-profile__label label-form-avatar'
             >
               <span className='label-form-avatar__btn'>выбрать аватар:</span>
-              <div className='label-form-avatar__container'></div>
+              <div className='label-form-avatar__container'/>
             </label>
           </div>
         </form>

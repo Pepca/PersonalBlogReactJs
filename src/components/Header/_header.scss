@@ -22,8 +22,6 @@
     font-size: 15px;
 
     &::placeholder {
-      // line-height: 14px;
-
       color: rgba(255, 255, 255, 0.4);
     }
   }
@@ -46,9 +44,6 @@
   visibility: hidden;
 
   transition: all 0.3s ease;
-
-  // opacity: 1;
-  // visibility: visible;
 
   &-show {
     opacity: 1;

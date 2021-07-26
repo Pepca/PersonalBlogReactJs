@@ -18,15 +18,12 @@
     background-color: $placeholder_color;
 
     ._skelet-app & {
-      @include adaptive-value('height', 400, 330, 0);
+      height: adaptive-value(400, 330);
     }
   }
 
   &__body {
-    @include adaptive-value('padding-top', 25, 13, 0);
-    @include adaptive-value('padding-left', 30, 15, 0);
-    @include adaptive-value('padding-right', 30, 15, 0);
-    @include adaptive-value('padding-bottom', 18, 13, 0);
+    padding: adaptive-value(25, 13) adaptive-value(30, 15) adaptive-value(18, 13);
   }
 }
 
@@ -36,7 +33,7 @@
 
 ._skelet-app .description-post__title {
   margin-bottom: 25px;
-  @include adaptive-value('width', 700, 190, 0);
+  width: adaptive-value(700, 190);
   height: 30px;
   border-radius: 15px;
   background-color: $placeholder_color;

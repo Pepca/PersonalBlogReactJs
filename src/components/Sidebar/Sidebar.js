@@ -51,7 +51,7 @@ export default function Sidebar() {
             opacity: state.sidebarIsOpen ? '1' : '0',
             visibility: state.sidebarIsOpen ? 'visible' : 'hidden',
           }}
-        ></div>
+        />
       )}
       <aside
         ref={refSidebar}
