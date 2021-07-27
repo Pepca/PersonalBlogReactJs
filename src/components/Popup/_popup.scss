@@ -1,5 +1,5 @@
 @import '../../style/variables';
-@import '../../style/mixin';
+@import '../../style/mixins';
 
 .popup {
   position: fixed;
@@ -102,6 +102,7 @@
 
 .btn-close-popup {
   position: relative;
+  cursor: pointer;
 
   width: adaptive-value(30, 25);
   height: adaptive-value(30, 25);

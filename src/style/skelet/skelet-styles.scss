@@ -1,7 +1,8 @@
+@import '../vendors';
 @import '../variables';
-@import '../mixin';
-@import 'reset';
-@import 'global';
+@import '../mixins';
+@import '../functions';
+@import '../global';
 
 // Components
 @import 'sidebar-skelet';

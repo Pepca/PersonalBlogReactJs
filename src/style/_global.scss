@@ -1,5 +1,22 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @include font($defaultFontFamily);
+
   background-color: $primary_color;
   color: $white;
 
@@ -10,6 +27,44 @@ body {
   &._sidebarIsOpen {
     overflow: hidden;
   }
+}
+
+img {
+  display: block;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+a {
+  @include font($defaultFontFamily);
+
+  color: $white;
+
+  text-decoration: none;
+
+  outline: none !important;
+}
+
+textarea,
+input {
+  @include font($defaultFontFamily);
+
+  color: $white;
+
+  outline: none;
+}
+
+button {
+  @include font($defaultFontFamily);
+
+  background-color: transparent;
+
+  color: $white;
+
+  outline: none;
 }
 
 .app {
@@ -42,30 +97,6 @@ body {
   margin: 0 auto;
   padding-right: adaptive-value(25, 15);
   padding-left: adaptive-value(25, 15);
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
-}
-
-a {
-  @include font($defaultFontFamily);
-
-  color: $white;
-}
-
-input {
-  @include font($defaultFontFamily);
-
-  color: $white;
-}
-
-button {
-  @include font($defaultFontFamily);
-  background-color: transparent;
-
-  color: $white;
 }
 
 .primary-title {

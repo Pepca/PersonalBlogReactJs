@@ -27,16 +27,19 @@ const isDev = process.env.NODE_ENV === _devMode
 const mode = isDev ? _devMode : _prodMode
 const target = isDev ? 'web' : 'browserslist'
 
-// Functions for control the bundle :
+// Functions for control the bundle:
 // =======================================
 // Plugins
 const plugins = () => {
   const config = [
+    isDev ? new ReactRefreshWebpackPlugin() : new CleanWebpackPlugin(),
+
     new CopyWebpackPlugin({
       patterns: [
         { from: 'src/style/skelet/skelet-styles.css', to: 'skelet-HTML' }
       ]
     }),
+
     new HtmlWebpackPlugin({
       template: './src/index.html',
       scriptLoading: isDev ? 'blocking' : 'defer',
@@ -45,16 +48,16 @@ const plugins = () => {
         collapseWhitespace: !isDev
       }
     }),
+
     new FaviconsWebpackPlugin({
       logo: './src/favicon.png',
       prefix: 'favicon/'
     }),
+
     new EslintWebpackPlugin()
   ]
 
-  if (isDev) {
-    config.unshift(new ReactRefreshWebpackPlugin())
-  } else {
+  if (!isDev) {
     config.unshift(new CleanWebpackPlugin())
     config.push(
       new MiniCssExtractPlugin({
@@ -65,16 +68,6 @@ const plugins = () => {
   }
 
   return config
-}
-// =======================================
-
-// =======================================
-// Output
-const output = () => {
-  return {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'scripts/[contenthash].bundle.js'
-  }
 }
 // =======================================
 
@@ -127,13 +120,15 @@ module.exports = {
 
   entry: './src/index.js',
 
-  output: output(),
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'scripts/[contenthash].bundle.js'
+  },
 
   module: {
     rules: [
       {
         test: /\.(png|jpe?g|gif|svg|webp)$/i,
-
         use: [
           {
             loader: 'file-loader',
@@ -145,13 +140,11 @@ module.exports = {
           {
             loader: 'image-webpack-loader',
             options: {
-              mozjpeg: {
-                progressive: true,
-                quality: 80
+              jpegtran: {
+                progressive: false
               },
-              pngquant: {
-                quality: [0.65, 0.9],
-                speed: 4
+              optipng: {
+                optimizationLevel: 3
               },
               gifsicle: {
                 interlaced: false
@@ -176,12 +169,12 @@ module.exports = {
         ]
       },
       {
-        test: /\.mp4$/i,
+        test: /\.(mp3?4|mp4v|wmv|avi|mov|webm|mvk)$/i,
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
+              name: '[contenthash].[ext]',
               outputPath: './videos'
             }
           }
@@ -190,16 +183,7 @@ module.exports = {
       {
         test: /\.(s[ac]|c)ss$/i,
         use: [
-          isDev
-            ? 'style-loader'
-            : {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                publicPath: (resourcePath, context) => {
-                  return path.relative(path.dirname(resourcePath), context) + '/'
-                }
-              }
-            },
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           { loader: 'css-loader', options: { sourceMap: isDev } },
           {
             loader: 'postcss-loader',
