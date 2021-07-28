@@ -69,6 +69,10 @@
     height: adaptive-value(50, 35);
 
     border-radius: 50%;
+
+    img {
+      margin: 0 auto;
+    }
   }
 
   &__item {
