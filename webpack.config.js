@@ -137,23 +137,23 @@ module.exports = {
               outputPath: './images'
             }
           },
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              jpegtran: {
-                progressive: false
-              },
-              optipng: {
-                optimizationLevel: 3
-              },
-              gifsicle: {
-                interlaced: false
-              },
-              webp: {
-                quality: 80
-              }
-            }
-          }
+          // {
+          //   loader: 'image-webpack-loader',
+          //   options: {
+          //     jpegtran: {
+          //       progressive: true
+          //     },
+          //     optipng: {
+          //       optimizationLevel: 3
+          //     },
+          //     gifsicle: {
+          //       interlaced: false
+          //     },
+          //     webp: {
+          //       quality: 80
+          //     }
+          //   }
+          // }
         ]
       },
       {
