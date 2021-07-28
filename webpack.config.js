@@ -183,7 +183,14 @@ module.exports = {
       {
         test: /\.(s[ac]|c)ss$/i,
         use: [
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          isDev ? 'style-loader' : {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: (resourcePath, context) => {
+                return path.relative(path.dirname(resourcePath), context) + '/'
+              }
+            }
+          },
           { loader: 'css-loader', options: { sourceMap: isDev } },
           {
             loader: 'postcss-loader',
