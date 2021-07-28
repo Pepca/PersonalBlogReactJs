@@ -10,12 +10,10 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   @include font($defaultFontFamily);
+
+  scroll-behavior: smooth;
 
   background-color: $primary_color;
   color: $white;
